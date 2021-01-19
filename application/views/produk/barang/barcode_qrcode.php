@@ -50,8 +50,8 @@
               $codeContents = $row->barcode; 
                
               //output gambar langsung ke browser, sebagai PNG
-              QRcode::png($codeContents,$tempdir.".png",QR_ECLEVEL_L, 4);
-              echo '<img src="'.base_url().''.$tempdir.'.png" style="width: 200px">'
+              QRcode::png($codeContents,$tempdir.".png",QR_ECLEVEL_L, 10);
+              echo '<img src="'.base_url().''.$tempdir.'.png" style="width: 300px">'
             ?>
             <br>
             <?=$row->barcode?>
@@ -63,22 +63,3 @@
         </div>
     </div>
 </section>
-<section class="content">
-
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">QrCode Generator 2</h3>
-        </div>
-        <div class="box-body">
-            
-            <br>
-            <?=$row->barcode?>
-            <br><br>
-            <!-- target _blank agar terbuka di tab baru -->
-            <a href="<?=site_url('barang/qrcode_print/' .$row->id_barang)?>" target="_blank" class="btn btn-default btn-sm"> 
-                <i class="fa fa-print"></i> Cetak PDF
-            </a>
-        </div>
-    </div>
-</section>
-

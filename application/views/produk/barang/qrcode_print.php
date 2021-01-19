@@ -6,7 +6,8 @@
     <title>QRcode Barang <?=$row->barcode?></title>
 </head>
 <body>
-    <img src="<?= $qrcode ?>" alt="" style="width: 250px">
-    
+    <img src="<?= $qrcode ?>" alt="" style="width: 200px">
+    <br>
+    <?=$row->barcode?>
 </body>
 </html>
