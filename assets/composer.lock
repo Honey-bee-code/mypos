@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d24143f7056fc22a6afbdc3fdd4e8326",
+    "content-hash": "1e64b2c237dc21574615091d89652581",
     "packages": [
         {
             "name": "composer/installers",
@@ -225,54 +225,6 @@
                 "source": "https://github.com/dompdf/dompdf/tree/v1.0.2"
             },
             "time": "2021-01-08T14:18:52+00:00"
-        },
-        {
-            "name": "ekliptor/qr-code",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ekliptor/qr-code.git",
-                "reference": "dcad60721bcccab89fda989fa499e0edc5169b5e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ekliptor/qr-code/zipball/dcad60721bcccab89fda989fa499e0edc5169b5e",
-                "reference": "dcad60721bcccab89fda989fa499e0edc5169b5e",
-                "shasum": ""
-            },
-            "require-dev": {
-                "khanamiryan/qrcode-detector-decoder": "^1.0",
-                "phpunit/phpunit": "^6.5"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/helpers/constants.php",
-                    "src/helpers/functions.php"
-                ],
-                "psr-4": {
-                    "QR_Code\\": "src/QR_Code/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ekliptor",
-                    "email": "Ekliptor1@yandex.com"
-                }
-            ],
-            "description": "QR Code Generator for PHP",
-            "keywords": [
-                "qrcode"
-            ],
-            "support": {
-                "issues": "https://github.com/Ekliptor/qr-code/issues",
-                "source": "https://github.com/Ekliptor/qr-code/tree/master"
-            },
-            "time": "2019-06-29T00:07:35+00:00"
         },
         {
             "name": "phenx/php-font-lib",

@@ -206,8 +206,8 @@ class Barang extends CI_Controller {
 		$this->fungsi->PdfGenerator($html, 'qrcode-'.$data['row']->barcode, 'A4', 'potrait');
 	}
 
-	function coba_qrcode() {
-		QR_Code::png('fahad inges');
-	}
+	// function coba_qrcode() {
+	// 	QR_Code::png('ahmad munawwir');
+	// }
 
 }
