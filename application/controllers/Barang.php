@@ -207,7 +207,7 @@ class Barang extends CI_Controller {
 	}
 
 	function coba_qrcode() {
-		QR_Code::png('fahad ingesss');
+		QR_Code::png('fahad lengi');
 	}
 
 }
