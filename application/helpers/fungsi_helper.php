@@ -24,7 +24,13 @@ function cek_admin() {
     }
 }
 
-function indo_currency($value)
-{
+function indo_currency($value){
 return 'Rp. ' . number_format($value, 0, ",", ".");
+}
+
+function indo_date($tanggal){
+    $d = substr($tanggal, 8, 2);
+    $m = substr($tanggal, 5, 2);
+    $y = substr($tanggal, 0, 4);
+    return $d.'-'.$m.'-'.$y;
 }

@@ -12,7 +12,8 @@ class Stok extends CI_Controller {
 
     public function stok_masuk_data()
     {
-        $this->template->load('template', 'transaksi/stok_masuk/stok_masuk_data');
+        $data['row'] = $this->stok_m->get_stok_masuk()->result();
+        $this->template->load('template', 'transaksi/stok_masuk/stok_masuk_data', $data);
     }
 
     public function stok_masuk_tambah()

@@ -152,14 +152,14 @@
                 <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"' : ''?>>
                     <a href="<?=site_url('customer')?>"><i class="fa fa-users"></i> <span>Pelanggan</span></a>
                 </li>
-                <li class="treeview">
+                <li class="treeview <?=$this->uri->segment(1) == 'stok' ? 'active' : ''?>">
                     <a href="#">
                         <i class="fa fa-shopping-cart"></i><span>Transaksi</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Sales</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Stok Masuk</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
+                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'masuk' ? 'class="active"' : ''?>><a href="<?=site_url('stok/masuk')?>"><i class="fa fa-circle-o"></i> Stok Masuk</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Stok Keluar</a></li>
                     </ul>
                 </li>

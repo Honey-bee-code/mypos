@@ -2,6 +2,20 @@
 
 class Stok_m extends CI_Model {
 
+    public function get_stok_masuk()
+    {
+        $this->db->select('t_stok.id_stok, p_barang.barcode, p_barang.nama as nama_barang, 
+        qty, tanggal, detail, supplier.nama as nama_supplier, p_barang.id_barang');
+        $this->db->from('t_stok');
+        $this->db->join('p_barang', 't_stok.id_barang = p_barang.id_barang');
+        $this->db->join('supplier', 't_stok.id_supplier = supplier.id_supplier', 'left'); // left join
+        $this->db->where('tipe', 'masuk');
+        $this->db->order_by('id_stok', 'desc');
+
+        $query = $this->db->get();
+        return $query;
+    }
+
 
     public function tambah_stok_masuk($post)
     {
