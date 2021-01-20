@@ -7,7 +7,7 @@ class Stok extends CI_Controller {
         parent::__construct();
         tidak_login();
         // cek_admin();
-        $this->load->model(['barang_m', 'supplier_m']);
+        $this->load->model(['barang_m', 'supplier_m', 'stok_m']);
     }
 
     public function stok_masuk_data()
@@ -25,8 +25,12 @@ class Stok extends CI_Controller {
 
     public function proses()
     {
-        if(isset($_POST['tambah'])){
-            echo "proses stok masuk tambah";
+        $post = $this->input->post(null, TRUE);
+        $this->stok_m->tambah_stok_masuk($post);
+		$this->barang_m->update_stok_masuk($post);
+		if($this->db->affected_rows() > 0){
+            echo "<script>alert('Data stok masuk berhasil disimpan')</script>";
         }
+        echo "<script>window.location='" .site_url('stok/masuk'). "'</script>";
     }
 }
