@@ -28,6 +28,7 @@
                         <th class="text-center">No.</th>
                         <th>Barcode</th>
                         <th>Barang</th>
+                        <th>Detail</th>
                         <th>Qty</th>
                         <th>Tanggal</th>
                         <th class="text-center">Opsi</th>
@@ -41,6 +42,7 @@
                         <td class="text-center" width="5%"><?=$no++?></td>
                         <td><?=$data->barcode?></td>
                         <td><?=$data->nama_barang?></td>
+                        <td><?=$data->detail?></td>
                         <td class="text-right"><?=$data->qty?></td>
                         <td class="text-center"><?=indo_date($data->tanggal)?></td>
                         <td class="text-center" width="140px">
