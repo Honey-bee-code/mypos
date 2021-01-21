@@ -160,7 +160,7 @@
                     <ul class="treeview-menu">
                         <li><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
                         <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'masuk' ? 'class="active"' : ''?>><a href="<?=site_url('stok/masuk')?>"><i class="fa fa-circle-o"></i> Stok Masuk</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Stok Keluar</a></li>
+                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'keluar' ? 'class="active"' : ''?>><a href="<?=site_url('stok/keluar')?>"><i class="fa fa-circle-o"></i> Stok Keluar</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Stok Masuk
-    <small>Barang Masuk / Pembelian</small>
+    Stok Keluar
+    <small>Barang Keluar (rusak, kadaluarsa, hilang, dsb)</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
     <li>Transaksi</li>
-    <li class="active">Stok Masuk</li>
+    <li class="active">Stok Keluar</li>
   </ol>
 </section>
 
@@ -16,16 +16,17 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tambah Stok Masuk</h3>
+            <h3 class="box-title">Tambah Stok Keluar</h3>
             <div class="pull-right">
-                <a href="<?=site_url('stok/masuk')?>" class="btn btn-warning btn-sm">
+                <a href="<?=site_url('stok/keluar')?>" class="btn btn-warning btn-sm">
                 <i class="fa fa-undo"></i> Kembali</a>
             </div>
         </div>
         <div class="box-body">
+            <?php echo validation_errors(); ?>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <form action="<?=site_url('stok/proses_masuk')?>" method="post">
+                    <form action="<?=site_url('stok/proses_keluar')?>" method="post">
                         <div class="form-group">
                             <label>Tanggal *</label>
                             <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control" required>
@@ -61,17 +62,9 @@
                         </div>
                         <div class="form-group">
                             <label>Detail Barang *</label>
-                            <input type="text" name="detail" id="detail" class="form-control" placeholder="Kulakan / tambahan / dll" required>
+                            <input type="text" name="detail" id="detail" class="form-control" placeholder="Hilang / rusak / kadaluarsa / dll" required>
                         </div>
-                        <div class="form-group">
-                            <label>Supplier</label>
-                            <select name="supplier" id="" class="form-control">
-                                <option value="">- Pilih -</option>
-                                <?php foreach($supplier as $key => $data) { ?>
-                                    <option value="<?=$data->id_supplier?>"><?=$data->nama?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+                        
                         <div class="form-group">
                             <label>QTY *</label>
                             <input type="number" name="qty" id="qty" class="form-control" required>
