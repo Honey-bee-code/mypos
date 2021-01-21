@@ -24,6 +24,20 @@ class Stok extends CI_Controller {
         $this->template->load('template', 'transaksi/stok_masuk/stok_masuk_form', $data);
     }
 
+    public function stok_masuk_hapus()
+    {
+        $id_stok = $this->uri->segment(4);
+        $id_barang = $this->uri->segment(5);
+        $qty = $this->stok_m->get($id_stok)->row()->qty;
+        $data = ['qty' => $qty, 'id_barang' => $id_barang];
+        $this->barang_m->update_stok_keluar($data);
+        $this->stok_m->hapus($id_stok);
+        if($this->db->affected_rows() > 0){
+            echo "<script>alert('Data stok masuk berhasil dihapus')</script>";
+        }
+        echo "<script>window.location='" .site_url('stok/masuk'). "'</script>";
+    }
+
     public function proses()
     {
         $post = $this->input->post(null, TRUE);

@@ -37,7 +37,8 @@
                             <input type="hidden" name="id_barang" id="id_barang">
                             <input type="text" name="barcode" id="barcode" class="form-control" required autofocus">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-barang">
+                                <button type="button" class="btn btn-info btn-flat" data-toggle="modal" 
+                                data-target="#modal-barang">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>

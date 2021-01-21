@@ -88,4 +88,12 @@ class Barang_m extends CI_Model {
         $this->db->query($sql);
     }
 
+    function update_stok_keluar($data) 
+    {
+        $qty = $data['qty'];
+        $id = $data['id_barang'];
+        $sql = "UPDATE p_barang SET stok = stok - '$qty' WHERE id_barang = '$id'";
+        $this->db->query($sql);
+    }
+
 }

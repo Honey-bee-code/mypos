@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['stok/masuk'] = 'stok/stok_masuk_data';
 $route['stok/masuk/tambah'] = 'stok/stok_masuk_tambah';
+$route['stok/masuk/hapus/(:num)/(:num)'] = 'stok/stok_masuk_hapus';

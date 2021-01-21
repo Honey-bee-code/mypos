@@ -46,10 +46,18 @@
                         <td class="text-right"><?=$data->qty?></td>
                         <td class="text-center"><?=indo_date($data->tanggal)?></td>
                         <td class="text-center" width="140px">
-                                <a class="btn btn-default btn-xs">
+                                <a class="btn btn-default btn-xs" id="detail_klik"
+                                data-toggle="modal" 
+                                data-target="#modal-detail"
+                                data-barcode="<?=$data->barcode?>"
+                                data-namabarang="<?=$data->nama_barang?>"
+                                data-supplier="<?=$data->nama_supplier?>"
+                                data-detail="<?=$data->detail?>"
+                                data-qty="<?=$data->qty?>"
+                                data-tanggal="<?=indo_date($data->tanggal)?>">
                                     <i class="fa fa-eye"></i> Detail
                                 </a>
-                                <a href="<?=site_url('stok/masuk/hapus/' .$data->id_stok)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
+                                <a href="<?=site_url('stok/masuk/hapus/' .$data->id_stok.'/'.$data->id_barang)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i> Hapus
                                 </a>
                         </td>
@@ -60,3 +68,65 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modal-detail">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Detail Stok Masuk</h4>
+            </div>
+            <div class="modal-body table-responsive">
+                <table class="table table-bordered no-margin">
+                    <body>
+                        <tr>
+                            <th style="width: 35%">Barcode</th>
+                            <td><span id="barcode"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Barang</th>
+                            <td><span id="namabarang"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Supplier</th>
+                            <td><span id="supplier"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Qty</th>
+                            <td><span id="qty"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal</th>
+                            <td><span id="tanggal"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Detail</th>
+                            <td><span id="detail"></span></td>
+                        </tr>
+                    </body>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#detail_klik', function(){
+            var barcode = $(this).data('barcode');
+            var namabarang = $(this).data('namabarang');
+            var supplier = $(this).data('supplier');
+            var qty = $(this).data('qty');
+            var tanggal = $(this).data('tanggal');
+            var detail = $(this).data('detail');
+            $('#barcode').text(barcode); // pake text karena <span>
+            $('#namabarang').text(namabarang);
+            $('#supplier').text(supplier);
+            $('#qty').text(qty);
+            $('#tanggal').text(tanggal);
+            $('#detail').text(detail);
+        })
+    })
+</script>

@@ -2,6 +2,22 @@
 
 class Stok_m extends CI_Model {
 
+    public function get($id = null)
+    {
+        $this->db->from('t_stok');
+        if($id != null){
+            $this->db->where('id_stok', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function hapus($id)
+    {
+        $this->db->where('id_stok', $id);
+        $this->db->delete('t_stok');
+    }
+
     public function get_stok_masuk()
     {
         $this->db->select('t_stok.id_stok, p_barang.barcode, p_barang.nama as nama_barang, 
