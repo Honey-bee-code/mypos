@@ -8,6 +8,7 @@
 <body>
     <img src="<?= $qrcode ?>" alt="" style="width: 200px">
     <br>
-    <?=$row->barcode?>
+    <?=$row->barcode?> 
+    
 </body>
 </html>

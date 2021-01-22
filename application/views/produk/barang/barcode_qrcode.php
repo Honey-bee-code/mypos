@@ -48,10 +48,15 @@
               $tempdir = "uploads/qrcode/qrcode-$row->barcode";
               //isi qrcode jika di scan
               $codeContents = $row->barcode; 
-               
+              $style = array(
+                'border' => true,
+                'padding' => 4,
+                'fgcolor' => array(0,0,0),
+                'bgcolor' => array(255,255,255)
+                );
               //output gambar langsung ke browser, sebagai PNG
-              QRcode::png($codeContents,$tempdir.".png",QR_ECLEVEL_L, 10);
-              echo '<img src="'.base_url().''.$tempdir.'.png" style="width: 300px">'
+              QRcode::png($codeContents,$tempdir.".png",QR_ECLEVEL_L, 10,1);
+              echo '<img src="'.base_url().''.$tempdir.'.png" style="width: 200px">'
             ?>
             <br>
             <?=$row->barcode?>
