@@ -57,9 +57,11 @@
                                 <a href="<?=site_url('user/edit/' .$data->id_user)?>" class="btn btn-success btn-xs">
                                     <i class="fa fa-pencil"></i> Edit
                                 </a>
-                                <button onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger btn-xs">
+                                <?php if($this->fungsi->user_login()->username != $data->username){ ?>
+                                <button onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger btn-xs" >
                                     <i class="fa fa-trash"></i> Hapus
                                 </button>
+                                <?php } ?>
                             </form>
                         </td>
                     </tr>

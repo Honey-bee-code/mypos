@@ -185,7 +185,7 @@
                         <li <?=$this->uri->segment(1) == 'barang' ? 'class="active"' : ''?>><a href="<?=site_url('barang')?>"><i class="fa fa-circle-o"></i> Barang</a></li>
                     </ul>
                 </li>
-                <?php if($this->fungsi->user_login()->level == 1) { ?>
+                <?php if($this->fungsi->user_login()->level == 1) { ?> 
                 <li class="header">Administrasi</li>
                 <li <?=$this->uri->segment(1) == 'user' ? 'class="active"' : ''?>><a href="<?=site_url('user')?>"><i class="fa fa-user"></i> <span>Pengguna</span></a></li>
                 

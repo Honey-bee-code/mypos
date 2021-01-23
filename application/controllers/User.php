@@ -61,6 +61,8 @@ class User extends CI_Controller {
                     echo "<script>window.location='" .site_url("user/tambah"). "'</script>";
                 }
             } else {
+                $post['photo'] = null;
+                $this->user_m->tambah($post);
                 if($this->db->affected_rows() > 0){
                     echo "<script>alert('Data berhasil disimpan')</script>";
                 }
@@ -83,11 +85,14 @@ class User extends CI_Controller {
 
 
         $this->user_m->hapus($id);
-
-        if($this->db->affected_rows() > 0){
+        $error = $this->db->error();
+		if($error['code'] != null){
+			echo "<script>alert('Data tidak bisa dihapus karena sudah berelasi')</script>";
+		} elseif($this->db->affected_rows() > 0){
             echo "<script>alert('Data berhasil dihapus')</script>";
         }
         echo "<script>window.location='" .site_url('user'). "'</script>";
+        
     }
 
     public function edit($id)

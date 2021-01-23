@@ -22,7 +22,7 @@ class Supplier extends CI_Controller {
 		$error = $this->db->error();
 		if($error['code'] != null){
 			echo "<script>alert('Data tidak bisa dihapus karena sudah berelasi')</script>";
-		} else {
+		} elseif($this->db->affected_rows() > 0) {
             echo "<script>alert('Data berhasil dihapus')</script>";
         }
         echo "<script>window.location='" .site_url('supplier'). "'</script>";
