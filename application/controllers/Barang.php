@@ -12,9 +12,6 @@ class Barang extends CI_Controller {
         $this->load->model(['barang_m', 'kategori_m', 'unit_m']);
 	}
 	
-		
-
-
 	public function index()
 	{
 		$data['row'] = $this->barang_m->get();
@@ -30,7 +27,7 @@ class Barang extends CI_Controller {
 		}
 
 		$qrcode = $this->barang_m->get($id)->row();
-		$file = './uploads/qrcode/'.$qrcode->barcode.'.png';
+		$file = './uploads/qrcode/qrcode-'.$qrcode->barcode.'.png';
 		if(file_exists($file)){
 			unlink($file); // menghapus qrcode
 		}
