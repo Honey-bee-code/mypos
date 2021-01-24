@@ -22,4 +22,14 @@ Class Fungsi {
         $dompdf->render();
         $dompdf->stream($namafile, array('Attachment' => 0)); //attachment untuk menampilkan html pdf
     }
+
+    public function jumlah_supplier(){
+        $this->ci->load->model('supplier_m');
+        return $this->ci->supplier_m->get()->num_rows();
+    }
+
+    public function jumlah_user(){
+        $this->ci->load->model('user_m');
+        return $this->ci->user_m->get()->num_rows();
+    }
 }

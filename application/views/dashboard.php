@@ -13,7 +13,7 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-3 col-xs">
       <div class="small-box bg-aqua">
         <div class="inner">
           <h3><?=$total_barang?></h3>
@@ -28,7 +28,7 @@
         </a>
       </div>
     </div>
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-3 col-xs">
       <div class="small-box bg-green">
         <div class="inner">
           <h3><?=$total_pelanggan?></h3>
@@ -43,6 +43,42 @@
         </a>
       </div>
     </div>
+    <div class="col-lg-3 col-xs">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3><?=$this->fungsi->jumlah_supplier()?></h3>
+          <p>Data Supplier</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-cube">
+          </i>
+        </div>
+        <a href="<?=site_url('supplier')?>" class="small-box-footer">
+        Selengkapnya <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    
+    <?php if($this->fungsi->user_login()->level == 1) { ?> 
+    <div class="col-lg-3 col-xs">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3><?=$this->fungsi->jumlah_user()?></h3>
+          <p>Data User</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-gear-b">
+          </i>
+        </div>
+        <a href="<?=site_url('user')?>" class="small-box-footer">
+        Selengkapnya <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <?php } ?>
+
   </div>
+  
+
 
 </section>
