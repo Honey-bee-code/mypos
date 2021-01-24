@@ -51,7 +51,10 @@
                                 <a href="<?=site_url('supplier/edit/' .$data->id_supplier)?>" class="btn btn-success btn-xs">
                                     <i class="fa fa-pencil"></i> Update
                                 </a>
-                                <a href="<?=site_url('supplier/hapus/' .$data->id_supplier)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
+                                <!-- <a href="<?=site_url('supplier/hapus/' .$data->id_supplier)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a> -->
+                                <a href="#modalHapus" data-toggle="modal" onclick="$('#modalHapus #formHapus').attr('action', '<?=site_url('supplier/hapus/' .$data->id_supplier)?>')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i> Hapus
                                 </a>
                         </td>
@@ -62,3 +65,21 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="modalHapus">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Yakin akan menghapus data ini?</h4>
+            </div>
+            <div class="modal-footer">
+                <form id="formHapus" action="" method="post">
+                    <button class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button class="btn btn-danger" type="submit">Tentu Saja</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
