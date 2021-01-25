@@ -45,6 +45,9 @@
                                 <div>
                                     <select name="" id="customer" class="form-control">
                                         <option value="">Umum</option>
+                                        <?php foreach($customer as $key => $value){ ?>
+                                            <option value="<?=$value->id_customer?>"><?=$value->nama?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </td>
@@ -103,7 +106,7 @@
             <div class="box box-widget">
                 <div class="box-body">
                     <div align="right">
-                        <h4>Kode Transaksi <b><span id="invoice">HNC2101250001</span></b></h4>
+                        <h4>Kode Transaksi <b><span id="invoice"><?= $invoice ?></span></b></h4>
                         <h1><b><span id="grand_total2" style="font-size:50pt">0</span></b></h1>
                     </div>
                 </div>
