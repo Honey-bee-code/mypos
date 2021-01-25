@@ -67,8 +67,8 @@
                             <td>
                                 <div class="form-group input-group">
                                     <input type="hidden" id="id_barang">
-                                    <input type="hidden" id="harga">
                                     <input type="hidden" id="stok">
+                                    <input type="hidden" id="harga">
                                     <input type="text" id="barcode" class="form-control" autofocus>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-barang">
@@ -93,7 +93,7 @@
                             <td>
                                 <div>
                                     <button type="button" id="add_cart" class="btn btn-primary">
-                                        <i class="fa fa-cart-plus"> Tambah</i>
+                                        <i class="fa fa-cart-plus"> Tambah ke Keranjang</i>
                                     </button>
                                 </div>
                             </td>
@@ -240,3 +240,90 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="modal-barang">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Silahkan Pilih Barang</h4>
+            </div>
+            <div class="modal-body table-responsive">
+                <table class="table table-bordered table-striped" id="tabel">
+                    <thead>
+                        <tr>
+                            <th>Barcode</th>
+                            <th>Nama</th>
+                            <th>Unit</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($barang as $key => $data){ ?>
+                        <tr>
+                            <td><?=$data->barcode?></td>
+                            <td><?=$data->nama?></td>
+                            <td><?=$data->nama_unit?></td>
+                            <td class="text-right"><?=indo_currency($data->harga)?></td>
+                            <td class="text-right"><?=$data->stok?></td>
+                            <td class="text-center">
+                                <button class="btn btn-xs btn-info" id="pilih" 
+                                data-id="<?=$data->id_barang?>"
+                                data-barcode="<?=$data->barcode?>"
+                                data-harga="<?=$data->harga?>"
+                                data-stok="<?=$data->stok?>">
+                                    <i class="fa fa-check"></i> Pilih
+                                </button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).on('click', '#pilih', function(){
+    $('#id_barang').val($(this).data('id'))
+    $('#barcode').val($(this).data('barcode'))
+    $('#harga').val($(this).data('harga'))
+    $('#stok').val($(this).data('stok'))
+    $('#modal-barang').modal('hide')
+})
+
+$(document).on('click', '#add_cart', function(){
+    var id_barang = $('#id_barang').val()
+    var harga = $('#harga').val()
+    var stok = $('#stok').val()
+    var qty = $('#qty').val()
+    if(id_barang == ''){
+        alert('Produk / barang belum dipilih')
+        $('#barcode').focus()
+    } else if(stok < 1) {
+        alert('Stok tidak mencukupi')
+        $('#id_barang').val('')
+        $('#barcode').val('')
+        $('#barcode').focus()
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url('penjualan/proses')?>',
+            data: {'add_cart' : true, 'id_barang' : id_barang, 'harga' : harga, 'qty' : qty},
+            dataType: 'json',
+            success: function(result){
+                if(result.success == true) {
+                    alert('Berhasil menambahkan keranjang ke database')
+                } else {
+                    alert('Gagal menambahkan barang ke keranjang')
+                }
+            }
+        })
+    }
+})
+
+</script>

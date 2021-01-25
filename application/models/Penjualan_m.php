@@ -12,11 +12,16 @@ class Penjualan_m extends CI_Model {
         if($query->num_rows() > 0) {
             $row = $query->row();
             $n = ((int)$row->nomor_invoice) + 1;
-            $no = sprintf("%'.04d", $n);
+            $no = sprintf("%'04d", $n);
         } else {
             $no = "0001";
         }
         $invoice = "HBC".date('ymd').$no;
         return $invoice;
+    }
+
+    public function add_cart($data)
+    {
+
     }
 }
