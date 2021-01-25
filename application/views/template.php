@@ -30,7 +30,7 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini <?=$this->uri->segment(1) == 'penjualan' ? 'sidebar-collapse' : null?>">
 <!-- Site wrapper -->
 <div class="wrapper">
     <header class="main-header">
@@ -152,15 +152,21 @@
                 <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"' : ''?>>
                     <a href="<?=site_url('customer')?>"><i class="fa fa-users"></i> <span>Pelanggan</span></a>
                 </li>
-                <li class="treeview <?=$this->uri->segment(1) == 'stok' ? 'active' : ''?>">
+                <li class="treeview <?=$this->uri->segment(1) == 'stok' || $this->uri->segment(1) == 'penjualan' ? 'active' : ''?>">
                     <a href="#">
                         <i class="fa fa-shopping-cart"></i><span>Transaksi</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
-                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'masuk' ? 'class="active"' : ''?>><a href="<?=site_url('stok/masuk')?>"><i class="fa fa-circle-o"></i> Stok Masuk</a></li>
-                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'keluar' ? 'class="active"' : ''?>><a href="<?=site_url('stok/keluar')?>"><i class="fa fa-circle-o"></i> Stok Keluar</a></li>
+                        <li <?=$this->uri->segment(1) == 'penjualan' ? 'class="active"' : ''?>>
+                            <a href="<?=site_url('penjualan')?>"><i class="fa fa-circle-o"></i> Penjualan</a>
+                        </li>
+                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'masuk' ? 'class="active"' : ''?>>
+                            <a href="<?=site_url('stok/masuk')?>"><i class="fa fa-circle-o"></i> Stok Masuk</a>
+                        </li>
+                        <li <?=$this->uri->segment(1) == 'stok' && $this->uri->segment(2) == 'keluar' ? 'class="active"' : ''?>>
+                            <a href="<?=site_url('stok/keluar')?>"><i class="fa fa-circle-o"></i> Stok Keluar</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
