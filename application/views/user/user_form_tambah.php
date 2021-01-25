@@ -9,6 +9,8 @@
     <li class="active">Pengguna</li>
   </ol>
 </section>
+<!-- <link rel="stylesheet" href="<?=base_url('assets/crop_upload/js/cropper/cropper.min.css')?>"> -->
+<!-- <link rel="stylesheet" href="<?=base_url('assets/crop_upload/css/main.css')?>"> -->
 
 <!-- Main content -->
 <section class="content">
@@ -75,3 +77,8 @@
         </div>
     </div>
 </section>
+<!-- <script src="<?=base_url('assets/crop_upload/js/main.js')?>"></script>  -->
+<!-- <script src="<?=base_url('assets/crop_upload/js/cropper/cropper.min.js')?>"></script> -->
+<!-- <script src="<?=base_url('assets/crop_upload/js/jquery.min.js')?>"></script> -->
+<!-- <script src="<?=base_url('assets/crop_upload/js/bootstrap.min.js')?>"></script> -->
+
