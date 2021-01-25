@@ -42,7 +42,7 @@ class User_m extends CI_Model {
 
     public function edit($post)
     {
-        $param['nama'] = $post['nama'];
+        $param['nama'] = $post['nama'] ;
         $param['username'] = $post['username'];
         if(!empty($post['password'])){
             $param['password'] = sha1($post['password']);

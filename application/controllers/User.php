@@ -171,7 +171,8 @@ class User extends CI_Controller {
 
     function cek_nama(){
         $post = $this->input->post(null, TRUE);
-        $query = $this->db->query("SELECT * FROM user WHERE nama = '$post[nama]' AND id_user != '$post[userid]'");
+        $clean = addslashes($post['nama']);
+        $query = $this->db->query("SELECT * FROM user WHERE nama = '$clean' AND id_user != '$post[userid]'");
         if($query->num_rows() > 0){
             $this->form_validation->set_message('cek_nama', '{field} ini sudah dipakai, silahkan ganti');
             return FALSE;
@@ -182,7 +183,8 @@ class User extends CI_Controller {
     
     function cek_username(){
         $post = $this->input->post(null, TRUE);
-        $query = $this->db->query("SELECT * FROM user WHERE username = '$post[username]' AND id_user != '$post[userid]'");
+        $clean = addslashes($post['username']);
+        $query = $this->db->query("SELECT * FROM user WHERE username = '$clean' AND id_user != '$post[userid]'");
         if($query->num_rows() > 0){
             $this->form_validation->set_message('cek_username', '{field} ini sudah dipakai, silahkan ganti');
             return FALSE;
