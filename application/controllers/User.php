@@ -44,13 +44,16 @@ class User extends CI_Controller {
             $config['max_size']       = 2048;
             $config['file_name']	  = 'photo-'.date('ymd').'-'.substr(md5(rand()),0,10);
             $this->load->library('upload', $config);
-
+            
+            
             $post = $this->input->post(null, TRUE);
 
             if(@$_FILES['photo']['name'] != null) {
                 if($this->upload->do_upload('photo')) {
                     $post['photo'] = $this->upload->data('file_name');
+                    
                     $this->user_m->tambah($post);
+
                     if($this->db->affected_rows() > 0){
                         echo "<script>alert('Data berhasil disimpan')</script>";
                     }
@@ -193,4 +196,5 @@ class User extends CI_Controller {
         }
     }
 
+    
 }
