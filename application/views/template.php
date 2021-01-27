@@ -90,13 +90,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?=base_url('uploads/photos/'.$this->fungsi->user_login()->photo)?>" class="user-image" alt="User Image">
-                            <span class="hidden-xs"><?=$this->fungsi->user_login()->username?></span>
+                            <img src="<?=file_exists(base_url('uploads/photos/'.$this->fungsi->user_login()->photo)) ? true : base_url('assets/images/picture.jpg')?>" class="user-image" alt="User Image">
+                            <span class="hidden-xs"><?=$this->session->userdata('username')?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?=base_url('uploads/photos/'.$this->fungsi->user_login()->photo)?>" class="img-circle" alt="User Image">
+                                <img src="<?=file_exists(base_url('uploads/photos/'.$this->fungsi->user_login()->photo)) ? true : base_url('assets/images/picture.jpg')?>" class="img-circle" alt="User Image">
                                 <p><?=$this->fungsi->user_login()->nama?>
                                     <small><?=$this->fungsi->user_login()->alamat?></small>
                                 </p>
@@ -126,7 +126,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<?=base_url('uploads/photos/'.$this->fungsi->user_login()->photo)?>" class="img-circle" alt="User Image">
+                    <img src="<?=file_exists(base_url('uploads/photos/'.$this->fungsi->user_login()->photo)) ? true : base_url('assets/images/picture.jpg')?>" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p><?=ucfirst($this->fungsi->user_login()->username)?></p>

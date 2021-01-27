@@ -22,6 +22,21 @@ class Penjualan_m extends CI_Model {
 
     public function add_cart($data)
     {
+        $query = $this->db->query("SELECT MAX(id_keranjang) AS no_keranjang FROM t_keranjang");
+        if($query->num_rows() > 0) {
+            $row = $query->row();
+            $nomor = ((int)$row->no_keranjang) + 1;
+        } else {
+            $nomor =  "1";
+        }
 
-    }
+        $param = array(
+            'id_keranjang' => $nomor,
+            'id_barang' => $data['id_barang'],
+            'harga' => $data['harga'],
+            'qty' => $data['qty'],
+            'total' => ($data['harga'] * $data['qty']), // bisa dikasi kurung, bisa juga tidak
+            'id_user' => $this->se
+        );
+    } 
 }

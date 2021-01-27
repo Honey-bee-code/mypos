@@ -9,7 +9,7 @@ class Penjualan extends CI_Controller {
         $this->load->model(['penjualan_m', 'barang_m']);
     }
 
-	public function index()
+	public function index() 
 	{
 		$this->load->model('customer_m');
 		$pelanggan = $this->customer_m->get()->result();
@@ -25,7 +25,7 @@ class Penjualan extends CI_Controller {
 	{
 		$data = $this->input->post(null, TRUE);
 
-		if(isset($_POST['add_cart'])) {
+		if(isset($_POST['tambah_keranjang'])) {
 			$this->penjualan_m->add_cart($data);
 		}
 

@@ -92,7 +92,7 @@
                             <td></td>
                             <td>
                                 <div>
-                                    <button type="button" id="add_cart" class="btn btn-primary">
+                                    <button type="button" id="tambah_keranjang" class="btn btn-primary">
                                         <i class="fa fa-cart-plus"> Tambah ke Keranjang</i>
                                     </button>
                                 </div>
@@ -285,7 +285,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 
 <script>
 $(document).on('click', '#pilih', function(){
@@ -296,8 +296,8 @@ $(document).on('click', '#pilih', function(){
     $('#modal-barang').modal('hide')
 })
 
-$(document).on('click', '#add_cart', function(){
-    var id_barang = $('#id_barang').val()
+$(document).on('click', '#tambah_keranjang', function(){
+    var idBarang = $('#id_barang').val()
     var harga = $('#harga').val()
     var stok = $('#stok').val()
     var qty = $('#qty').val()
@@ -313,7 +313,7 @@ $(document).on('click', '#add_cart', function(){
         $.ajax({
             type: 'POST',
             url: '<?=site_url('penjualan/proses')?>',
-            data: {'add_cart' : true, 'id_barang' : id_barang, 'harga' : harga, 'qty' : qty},
+            data: {'tambah_keranjang' : true, 'id_barang' : idBarang, 'harga' : harga, 'qty' : qty},
             dataType: 'json',
             success: function(result){
                 if(result.success == true) {

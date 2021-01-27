@@ -18,11 +18,12 @@ class Auth extends CI_Controller {
 				$row = $query->row();
 				$param = array(
 					'userid' => $row->id_user,
-					'level' => $row->level
+					'level' => $row->level,
+					'nama' => addslashes($row->nama),
 				);
 				$this->session->set_userdata($param);
 				echo "<script>
-					alert('Selamat, login berhasil');
+					alert('Selamat datang ".$this->session->userdata('nama').", login berhasil');
 					window.location='" .site_url('dashboard'). "'
 					</script>";
 			} else {
