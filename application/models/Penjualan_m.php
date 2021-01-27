@@ -61,4 +61,13 @@ class Penjualan_m extends CI_Model {
         }
         $this->db->delete('t_keranjang');
     }
+
+    public function update_cart_qty($post) {
+        $sql = "UPDATE t_keranjang SET 
+                harga = '$post[harga]',
+                qty = qty + '$post[qty]',
+                total = '$post[harga]' * qty
+                WHERE id_barang = '$post[id_barang]'";
+        $this->db->query($sql);
+    }
 }

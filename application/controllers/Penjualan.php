@@ -28,8 +28,13 @@ class Penjualan extends CI_Controller {
 		$data = $this->input->post(null, TRUE);
 
 		if(isset($_POST['tambah_keranjang'])) {
-			$this->penjualan_m->add_cart($data);
-		}
+			$id_barang = $this->input->post('id_barang');
+			$cek_keranjang = $this->penjualan_m->get_cart(['t_keranjang.id_barang' => $id_barang])->num_rows();
+			if($cek_keranjang > 0){
+				$this->penjualan_m->update_cart_qty($data);
+			} else {
+				$this->penjualan_m->add_cart($data);
+			}
 
 		if($this->db->affected_rows() > 0){
 			$param  = array("success" => true);
@@ -37,6 +42,7 @@ class Penjualan extends CI_Controller {
 			$param  = array("success" => false);
 		}
 		echo json_encode($param);
+		}
 	}
 
 	function cart_data(){
