@@ -53,4 +53,12 @@ class Penjualan_m extends CI_Model {
         );
         $this->db->insert('t_keranjang', $param);
     } 
+
+    public function hapus($param = null)
+    {
+        if($param != null) {
+            $this->db->where($param);
+        }
+        $this->db->delete('t_keranjang');
+    }
 }

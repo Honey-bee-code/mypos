@@ -44,5 +44,18 @@ class Penjualan extends CI_Controller {
 		$data['keranjang'] = $keranjang;
 		$this->load->view('transaksi/penjualan/penjualan_data', $data);
 	}
+
+	public function cart_del()
+	{
+		$cart_id = $this->input->post('id_cart');
+		$this->penjualan_m->hapus(['id_keranjang' => $cart_id]);
+
+		if($this->db->affected_rows() > 0){
+			$param = array("success" => true);
+		} else {
+			$param = array("success" => false);
+		}
+		echo json_encode($param);
+	}
 	
 }
