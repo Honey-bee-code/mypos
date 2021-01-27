@@ -126,17 +126,15 @@
                                 <th width="30px">No.</th>
                                 <th>Barcode</th>
                                 <th>Nama Barang</th>
-                                <th>Harga</th>
-                                <th>Qty</th>
-                                <th width="10%">Diskon Barang</th>
-                                <th width="15%">Total</th>
-                                <th>Actions</th>
+                                <th class="text-right">Harga</th>
+                                <th class="text-right">Qty</th>
+                                <th class="text-right" width="10%">Diskon Barang</th>
+                                <th class="text-right" width="15%">Total</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="cart_table">
-                            <tr>
-                                <td colspan="9" class="text-center">Tidak ada item</td>
-                            </tr>
+                        <tbody id="tabel_keranjang">
+                            <?php $this->view('transaksi/penjualan/penjualan_data') ?>
                         </tbody>
                     </table>
                 </div>
@@ -319,7 +317,9 @@ $(document).on('click', '#tambah_keranjang', function(){
             dataType: 'json',
             success: function(result){
                         if(result.success == true) {
-                            alert('Berhasil menambahkan keranjang ke database')
+                            $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
+
+                            })
                         } else {
                             alert('Gagal menambahkan barang ke keranjang')
                         }

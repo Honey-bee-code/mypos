@@ -20,6 +20,19 @@ class Penjualan_m extends CI_Model {
         return $invoice;
     }
 
+    public function get_cart($param = null)
+    {
+        $this->db->select('*, p_barang.nama as nama_barang, t_keranjang.harga as harga_keranjang'); //tanda (*) artinya semua field
+        $this->db->from('t_keranjang');
+        $this->db->join('p_barang', 't_keranjang.id_barang = p_barang.id_barang');
+        if($param != null){
+            $this->db->where($param);
+        }
+        $this->db->where('id_user', $this->session->userdata('userid'));
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function add_cart($data)
     {
         $query = $this->db->query("SELECT MAX(id_keranjang) AS no_keranjang FROM t_keranjang");

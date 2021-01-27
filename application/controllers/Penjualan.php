@@ -13,10 +13,12 @@ class Penjualan extends CI_Controller {
 	{
 		$this->load->model('customer_m');
 		$pelanggan = $this->customer_m->get()->result();
+		$keranjang = $this->penjualan_m->get_cart();
 		$data = array(
 			'customer' => $pelanggan,
 			'invoice' => $this->penjualan_m->invoice_no(),
 			'barang' => $this->barang_m->get()->result(),
+			'keranjang' => $keranjang,
 		);
         $this->template->load('template', 'transaksi/penjualan/penjualan_form', $data);
 	}
@@ -36,4 +38,11 @@ class Penjualan extends CI_Controller {
 		}
 		echo json_encode($param);
 	}
+
+	function cart_data(){
+		$keranjang = $this->penjualan_m->get_cart();
+		$data['keranjang'] = $keranjang;
+		$this->load->view('transaksi/penjualan/penjualan_data', $data);
+	}
+	
 }

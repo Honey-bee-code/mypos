@@ -211,7 +211,8 @@
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <?php echo $contents ?>
+        <!-- variabel isi_konten ada di library Template -->
+        <?php echo $isi_konten ?> 
     </div>
     <!-- /.content-wrapper -->
 
