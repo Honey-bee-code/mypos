@@ -36,7 +36,8 @@ class Penjualan_m extends CI_Model {
             'harga' => $data['harga'],
             'qty' => $data['qty'],
             'total' => ($data['harga'] * $data['qty']), // bisa dikasi kurung, bisa juga tidak
-            'id_user' => $this->se
+            'id_user' => $this->session->userdata('userid')
         );
+        $this->db->insert('t_keranjang', $param);
     } 
 }
