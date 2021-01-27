@@ -114,6 +114,8 @@
         </div>
     </div>
 
+    <div class="data"></div>
+
     <div class="row">
         <div class="col-lg">
             <div class="box box-widget">
@@ -316,14 +318,15 @@ $(document).on('click', '#tambah_keranjang', function(){
             data: {'tambah_keranjang' : true, 'id_barang' : idBarang, 'harga' : harga, 'qty' : qty},
             dataType: 'json',
             success: function(result){
-                if(result.success == true) {
-                    alert('Berhasil menambahkan keranjang ke database')
-                } else {
-                    alert('Gagal menambahkan barang ke keranjang')
-                }
-            }
-        })
-    }
+                        if(result.success == true) {
+                            alert('Berhasil menambahkan keranjang ke database')
+                        } else {
+                            alert('Gagal menambahkan barang ke keranjang')
+                        }
+                    }
+
+            })
+        }
 })
 
 </script>
