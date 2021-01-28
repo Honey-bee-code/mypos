@@ -5,10 +5,10 @@ if($keranjang->num_rows() > 0) {
     <td><?=$no++?>.</td>
     <td><?=$data->barcode?></td>
     <td><?=$data->nama_barang?></td>
-    <td class="text-right"><?=indo_currency($data->harga_keranjang)?></td>
+    <td class="text-right"><?=($data->harga_keranjang)?></td>
     <td class="text-right"><?=$data->qty?></td>
     <td class="text-right"><?=$data->diskon_barang?></td>
-    <td class="text-right" id="total"><?=indo_currency($data->total)?></td>
+    <td class="text-right" id="total"><?=$data->total?></td>
     <td class="text-center" width="140px">
         <button id="edit_keranjang" data-toggle="modal" data-target="#modal-barang-edit"
             data-cartid="<?=$data->id_keranjang?>"

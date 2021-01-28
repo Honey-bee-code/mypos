@@ -337,6 +337,10 @@
 </div>
 
 <script>
+$(document).ready(function(){
+    calculate()
+})
+
 $(document).on('click', '#pilih', function(){
     $('#id_barang').val($(this).data('id'))
     $('#barcode').val($(this).data('barcode'))
@@ -367,7 +371,7 @@ $(document).on('click', '#tambah_keranjang', function(){
             success: function(result){
                         if(result.success == true) {
                             $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
-
+                                calculate()
                             })
                             $('#id_barang').val('')
                             $('#barcode').val('')
@@ -392,6 +396,7 @@ $(document).on('click', '#edit_keranjang', function() {
     $('#diskon_barang').val($(this).data('diskon'))
     $('#total_barang').val($(this).data('total'))
 })
+
 function hitung_edit_modal() {
     var harga = $('#harga_barang').val()
     var qty = $('#qty_barang').val()
@@ -402,7 +407,39 @@ function hitung_edit_modal() {
     
     total = (harga - diskon) * qty
     $('#total_barang').val(total)
+
+    if(diskon == ''){
+        $('#diskon_barang').val(0)
+    }
 }
+
+function calculate() {
+    var subtotal = 0;
+    $('#tabel_keranjang tr').each(function() {
+        subtotal += parseInt($(this).find('#total').text())
+    })
+    isNaN(subtotal) ? $('#sub_total').val(0) : $('#sub_total').val(subtotal)
+
+    var diskon = $('#diskon').val()
+    var grand_total = subtotal - diskon
+    if(isNaN(grand_total)){
+        $('#grand_total').val(0)
+        $('#grand_total2').text(0)
+    } else {
+        $('#grand_total').val(grand_total)
+        $('#grand_total2').text(grand_total)
+    }
+    if(diskon == ''){
+        $('#diskon').val(0)
+    }
+
+    var cash = $('#cash').val();
+    cash != 0 ? $('#change').val(cash - grand_total) : $('#change').val(0)
+}
+$(document).on('keyup mouseup', '#diskon, #cash', function() {
+    calculate()
+})
+
 $(document).on('keyup mouseup', '#harga_barang, #qty_barang, #diskon_barang', function() {
     hitung_edit_modal()
 })
@@ -418,7 +455,7 @@ $(document).on('click', '#hapus_keranjang', function(){
             success: function(result) {
                 if(result.success == true) {
                     $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
-
+                        calculate()
                     })
                 } else {
                     alert('Gagal menghapus barang dari keranjang')
@@ -450,12 +487,13 @@ $(document).on('click', '#update_keranjang', function(){
             success: function(result){
                         if(result.success == true) {
                             $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
-
+                                calculate()
                             })
-                            // alert('Data keranjang barang berhasil di update')
+                            alert('Data keranjang barang berhasil diubah')
                             $('#modal-barang-edit').modal('hide');
                         } else {
-                            alert('Data keranjang barang tidak bisa di update')
+                            alert('Data keranjang barang tidak diubah')
+                            $('#modal-barang-edit').modal('hide');
                         }
                     }
 
