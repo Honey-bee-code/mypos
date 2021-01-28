@@ -70,4 +70,16 @@ class Penjualan_m extends CI_Model {
                 WHERE id_barang = '$post[id_barang]'";
         $this->db->query($sql);
     }
+
+    public function edit_cart($post)
+    {
+        $param = array(
+            'harga' => $post['harga'],
+            'qty' => $post['qty'],
+            'diskon_barang' => $post['diskon'],
+            'total' => $post['total'],
+        );
+        $this->db->where('id_keranjang' , $post['id_cart']);
+        $this->db->update('t_keranjang', $param);
+    }
 }

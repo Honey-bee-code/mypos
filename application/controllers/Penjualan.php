@@ -43,6 +43,17 @@ class Penjualan extends CI_Controller {
 		}
 		echo json_encode($param);
 		}
+
+		if(isset($_POST['edit_keranjang'])){
+			$this->penjualan_m->edit_cart($data);
+
+		if($this->db->affected_rows() > 0){
+			$param  = array("success" => true);
+		} else {
+			$param  = array("success" => false);
+		}
+		echo json_encode($param);
+		}
 	}
 
 	function cart_data(){

@@ -296,6 +296,7 @@
                 <h4 class="modal-title">Edit Keranjang Barang</h4>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="cartid_barang"> <!-- wajib ada, hampir lupa -->
                 <div class="form-group">
                     <label for="barcode_barang">Produk barang</label>
                     <div class="row">
@@ -326,7 +327,7 @@
             </div>
             <div class="modal-footer">
                 <div class="pull-right">
-                    <button type="button" id="edit_keranjang" class="btn btn-flat btn-primary">
+                    <button type="button" id="update_keranjang" class="btn btn-flat btn-primary">
                         <i class="fa fa-paper-plane"></i> Simpan
                     </button>
                 </div>
@@ -368,6 +369,10 @@ $(document).on('click', '#tambah_keranjang', function(){
                             $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
 
                             })
+                            $('#id_barang').val('')
+                            $('#barcode').val('')
+                            $('#qty').val(1)
+                            $('#barcode').focus('')
                         } else {
                             alert('Gagal menambahkan barang ke keranjang')
                         }
@@ -421,6 +426,42 @@ $(document).on('click', '#hapus_keranjang', function(){
             }
         })
     }
+})
+
+$(document).on('click', '#update_keranjang', function(){
+    var cart_id = $('#cartid_barang').val()
+    var harga = $('#harga_barang').val()
+    var qty = $('#qty_barang').val()
+    var diskon = $('#diskon_barang').val()
+    var total = $('#total_barang').val()
+    if(harga == '' || harga < 1){
+        alert('Harga tidak boleh kosong')
+        $('#harga_barang').focus()
+    } else if(qty == '' || qty < 1) {
+        alert('Qty minimal 1')
+        $('#qty_barang').focus('')
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url('penjualan/proses')?>',
+            data: {'edit_keranjang' : true, 'id_cart' : cart_id, 'harga' : harga, 
+                    'qty' : qty, 'diskon' : diskon, 'total' : total},
+            dataType: 'json',
+            success: function(result){
+                        if(result.success == true) {
+                            $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
+
+                            })
+                            // alert('Data keranjang barang berhasil di update')
+                            $('#modal-barang-edit').modal('hide');
+                        } else {
+                            alert('Data keranjang barang tidak bisa di update')
+                        }
+                    }
+
+            })
+            // alert('proses')
+        }
 })
 
 </script>
