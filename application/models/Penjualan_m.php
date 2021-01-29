@@ -82,4 +82,25 @@ class Penjualan_m extends CI_Model {
         $this->db->where('id_keranjang' , $post['id_cart']);
         $this->db->update('t_keranjang', $param);
     }
+
+    public function add_sale($post)
+    {
+        $param = array(
+            'invoice' => $this->invoice_no(),
+            'id_customer' => $post['id_customer'] == "" ? null : $post['id_customer'],
+            'total_harga' => $post['subtotal'],
+            'diskon' => $post['diskon'],
+            'harga_semua' => $post['grandtotal'],
+            'bayar' => $post['cash'],
+            'kembalian' => $post['change'],
+            'nota' => $post['catatan'],
+            'tanggal' => $post['tanggal'],
+            'id_user' => $this->session->userdata('userid'),
+        );
+        $this->db->insert('t_penjualan', $param);
+        return $this->db->insert_id(); //insert_id bawaan CI untuk
+    }
+    function add_sale_detail($param) {
+        $this->db->insert_batch('t_penjualan_detail', $param);
+    }
 }

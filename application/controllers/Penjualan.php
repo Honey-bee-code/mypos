@@ -54,6 +54,32 @@ class Penjualan extends CI_Controller {
 		}
 		echo json_encode($param);
 		}
+
+		if(isset($_POST['proses_pembayaran'])){
+			$sale_id = $this->penjualan_m->add_sale($data);
+			$keranjang = $this->penjualan_m->get_cart()->result();
+			$row = [];
+			foreach($keranjang as $k => $value){
+				array_push($row, array(
+						'id_penjualan' => $sale_id,
+						'id_barang' => $value->id_barang,
+						'harga' => $value->harga,
+						'qty' => $value->qty,
+						'diskon_barang' => $value->diskon_barang,
+						'total' => $value->total,
+					)
+				);
+			}
+			$this->penjualan_m->add_sale_detail($row);
+			$this->penjualan_m->hapus(['id_user' => $this->session->userdata('userid')]);
+
+			if($this->db->affected_rows() > 0){
+				$param  = array("success" => true);
+			} else {
+				$param  = array("success" => false);
+			}
+			echo json_encode($param);
+		}
 	}
 
 	function cart_data(){

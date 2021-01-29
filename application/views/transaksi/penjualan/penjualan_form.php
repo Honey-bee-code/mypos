@@ -215,11 +215,11 @@
                     <table width="100%">
                         <tr>
                             <td style="vertical-align:top">
-                                <label for="note">Nota</label>
+                                <label for="catatan">Nota</label>
                             </td>
                             <td>
                                 <div>
-                                    <textarea id="note" rows="3" class="form-control"></textarea>
+                                    <textarea id="catatan" rows="3" class="form-control"></textarea>
                                 </div>
                             </td>
                         </tr>
@@ -233,7 +233,7 @@
                     <i class="fa fa-refresh"></i> Batalkan
                 </button>
                 <br><br>
-                <button id="proses_payment" class="btn btn-flat btn-lg btn-success">
+                <button id="proses_pembayaran" class="btn btn-flat btn-lg btn-success">
                     <i class="fa fa-paper-plane-o"></i> Proses Pembayaran
                 </button>
             </div>
@@ -408,9 +408,9 @@ function hitung_edit_modal() {
     total = (harga - diskon) * qty
     $('#total_barang').val(total)
 
-    if(diskon == ''){
-        $('#diskon_barang').val(0)
-    }
+    // if(diskon == ''){
+    //     $('#diskon_barang').val(0)
+    // }
 }
 
 function calculate() {
@@ -429,9 +429,9 @@ function calculate() {
         $('#grand_total').val(grand_total)
         $('#grand_total2').text(grand_total)
     }
-    if(diskon == ''){
-        $('#diskon').val(0)
-    }
+    // if(diskon == ''){
+    //     $('#diskon').val(0)
+    // }
 
     var cash = $('#cash').val();
     cash != 0 ? $('#change').val(cash - grand_total) : $('#change').val(0)
@@ -498,8 +498,48 @@ $(document).on('click', '#update_keranjang', function(){
                     }
 
             })
-            // alert('proses')
         }
 })
+
+$(document).on('click', '#proses_pembayaran', function(){
+    var id_customer = $('#customer').val()
+    var subtotal = $('#sub_total').val()
+    var diskon = $('#diskon').val()
+    var grandtotal = $('#grand_total').val()
+    var cash = $('#cash').val()
+    var change = $('#change').val()
+    var catatan = $('#catatan').val()
+    var tanggal = $('#tanggal').val()
+    if(subtotal < 1){
+        alert('Belum ada produk/barang yang dipilih')
+        $('#barcode').focus()
+    } else if(cash < 1){
+        alert('Jumlah uang cash belum di input')
+        $('#cash').focus()
+    } else if(parseInt(cash) < parseInt(grandtotal)){
+        alert('Jumlah uang cash kurang')
+        $('#cash').focus()
+    } else {
+        if(confirm('Transaksi akan di proses, yakin?')){
+            $.ajax({
+                type: 'POST',
+                url: '<?=site_url('penjualan/proses')?>',
+                data: {'proses_pembayaran': true, 'id_customer': id_customer, 'subtotal': subtotal,
+                        'diskon': diskon, 'grandtotal': grandtotal, 'cash': cash, 'change': change,
+                        'catatan': catatan, 'tanggal': tanggal},
+                dataType: 'json',
+                success: function(result){
+                    if(result.success) {
+                        alert('Transaksi berhasil');
+                    } else {
+                        alert('Transaksi gagal');
+                    }
+                    location.href='<?=site_url('penjualan')?>'
+                }
+            })
+        }
+    }
+})
+
 
 </script>
