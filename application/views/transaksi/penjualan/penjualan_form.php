@@ -16,9 +16,9 @@
         <div class="col-lg-4">
             <div class="box box-widget">
                 <div class="box-body">
-                    <table>
+                    <table width="100%">
                         <tr>
-                            <td style="vertical-align:top">
+                            <td style="vertical-align:top; width: 30%">
                                 <label for="tanggal">Tanggal</label>
                             </td>
                             <td>
@@ -28,7 +28,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align:top; width:30%">
+                            <td style="vertical-align:top;">
                                 <label for="user">Kasir</label>
                             </td>
                             <td>
@@ -56,19 +56,20 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4">
             <div class="box box-widget">
                 <div class="box-body">
                     <table width="100%">
                         <tr>
-                            <td style="vertical-align:top; width:30%">
+                            <td style="vertical-align:top; width:20%">
                                <label for="barcode">Barcode</label> 
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <div class="form-group input-group">
                                     <input type="hidden" id="id_barang">
-                                    <input type="text" id="stok">
-                                    <input type="text" id="qty_keranjang">
+                                    <!-- <input type="hidden" id="stok"> -->
+                                    <input type="hidden" id="qty_keranjang">
                                     <input type="hidden" id="harga">
                                     <input type="text" id="barcode" class="form-control" autofocus>
                                     <span class="input-group-btn">
@@ -86,6 +87,14 @@
                             <td>
                                 <div class="form-group">
                                     <input type="number" id="qty" value="1" min="1" class="form-control">
+                                </div>
+                            </td>
+                            <td style="vertical-align:top; text-align:center; width: 20%">
+                                <label for="stok">Stok</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" id="stok" class="form-control" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -314,8 +323,16 @@
                     <input type="number" id="harga_barang" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="qty_barang">Qty</label>
-                    <input type="number" id="qty_barang" class="form-control">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <label for="qty_barang">Qty</label>
+                            <input type="number" id="qty_barang" class="form-control">
+                        </div>
+                        <div class="col-lg-5">
+                            <label for="stok_barang">Stok</label>
+                            <input type="number" id="stok_barang" class="form-control" readonly>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="diskon_barang">Diskon per barang</label>
@@ -343,14 +360,26 @@ $(document).ready(function(){
 })
 
 $(document).on('click', '#pilih', function(){
+    var barcode = $(this).data('barcode')
+
     $('#id_barang').val($(this).data('id'))
-    $('#barcode').val($(this).data('barcode'))
+    $('#barcode').val(barcode)
     $('#harga').val($(this).data('harga'))
     $('#stok').val($(this).data('stok'))
     $('#modal-barang').modal('hide')
+
+    get_cart_qty(barcode)
 })
-function get_cart_qty(){
-    var
+function get_cart_qty(barcode){
+    $('#tabel_keranjang tr').each(function(){
+        // var qty_cart = $(this).find("td").eq(4).html() // takbisa menfilter baris
+        var qty_cart = $("#tabel_keranjang td.barcode:contains('"+barcode+"')").parent().find("td").eq(4).html()
+        if(qty_cart != null) {
+            $('#qty_keranjang').val(qty_cart)
+        } else {
+            $('#qty_keranjang').val(0)
+        }
+    })
 }
 
 $(document).on('click', '#tambah_keranjang', function(){
@@ -358,10 +387,12 @@ $(document).on('click', '#tambah_keranjang', function(){
     var harga = $('#harga').val()
     var stok = $('#stok').val()
     var qty = $('#qty').val()
+    var qty_cart = $('#qty_keranjang').val()
+
     if(id_barang == ''){
         alert('Produk / barang belum dipilih')
         $('#barcode').focus()
-    } else if(stok < 1 || parseInt(stok) < parseInt(qty)) {
+    } else if(stok < 1 || parseInt(stok) < (parseInt(qty) + parseInt(qty_cart))) {
         alert('Stok tidak mencukupi')
         // $('#id_barang').val('')
         // $('#barcode').val('')
@@ -388,17 +419,6 @@ $(document).on('click', '#tambah_keranjang', function(){
 
             })
         }
-})
-
-$(document).on('click', '#edit_keranjang', function() {
-    $('#cartid_barang').val($(this).data('cartid'))
-    $('#barcode_barang').val($(this).data('barcode'))
-    $('#produk_barang').val($(this).data('produk'))
-    $('#harga_barang').val($(this).data('harga'))
-    $('#qty_barang').val($(this).data('qty'))
-    $('#total_sebelum').val($(this).data('harga') * $(this).data('qty'))
-    $('#diskon_barang').val($(this).data('diskon'))
-    $('#total_barang').val($(this).data('total'))
 })
 
 function hitung_edit_modal() {
@@ -448,10 +468,23 @@ $(document).on('keyup mouseup', '#harga_barang, #qty_barang, #diskon_barang', fu
     hitung_edit_modal()
 })
 
+$(document).on('click', '#edit_keranjang', function() {
+    $('#cartid_barang').val($(this).data('cartid'))
+    $('#barcode_barang').val($(this).data('barcode'))
+    $('#produk_barang').val($(this).data('produk'))
+    $('#stok_barang').val($(this).data('stok'))
+    $('#harga_barang').val($(this).data('harga'))
+    $('#qty_barang').val($(this).data('qty'))
+    $('#total_sebelum').val($(this).data('harga') * $(this).data('qty'))
+    $('#diskon_barang').val($(this).data('diskon'))
+    $('#total_barang').val($(this).data('total'))
+})
+
 $(document).on('click', '#update_keranjang', function(){
     var cart_id = $('#cartid_barang').val()
     var harga = $('#harga_barang').val()
     var qty = $('#qty_barang').val()
+    var stok = $('#stok_barang').val()
     var diskon = $('#diskon_barang').val()
     var total = $('#total_barang').val()
     if(harga == '' || harga < 1){
@@ -459,6 +492,9 @@ $(document).on('click', '#update_keranjang', function(){
         $('#harga_barang').focus()
     } else if(qty == '' || qty < 1) {
         alert('Qty minimal 1')
+        $('#qty_barang').focus('')
+    } else if(parseInt(stok) < parseInt(qty)) {
+        alert('Stok tidak mencukupi')
         $('#qty_barang').focus('')
     } else {
         $.ajax({
