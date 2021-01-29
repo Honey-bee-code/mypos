@@ -36,23 +36,23 @@ class Penjualan extends CI_Controller {
 				$this->penjualan_m->add_cart($data);
 			}
 
-		if($this->db->affected_rows() > 0){
-			$param  = array("success" => true);
-		} else {
-			$param  = array("success" => false);
-		}
-		echo json_encode($param);
+			if($this->db->affected_rows() > 0){
+				$param  = array("success" => true);
+			} else {
+				$param  = array("success" => false);
+			}
+			echo json_encode($param);
 		}
 
 		if(isset($_POST['edit_keranjang'])){
 			$this->penjualan_m->edit_cart($data);
 
-		if($this->db->affected_rows() > 0){
-			$param  = array("success" => true);
-		} else {
-			$param  = array("success" => false);
-		}
-		echo json_encode($param);
+			if($this->db->affected_rows() > 0){
+				$param  = array("success" => true);
+			} else {
+				$param  = array("success" => false);
+			}
+			echo json_encode($param);
 		}
 
 		if(isset($_POST['proses_pembayaran'])){
@@ -90,15 +90,34 @@ class Penjualan extends CI_Controller {
 
 	public function cart_del()
 	{
-		$cart_id = $this->input->post('id_cart');
-		$this->penjualan_m->hapus(['id_keranjang' => $cart_id]);
-
-		if($this->db->affected_rows() > 0){
-			$param = array("success" => true);
-		} else {
-			$param = array("success" => false);
+		if(isset($_POST['hapus_keranjang'])) {
+			$cart_id = $this->input->post('id_cart');
+			$this->penjualan_m->hapus(['id_keranjang' => $cart_id]);
+	
+			if($this->db->affected_rows() > 0){
+				$param = array("success" => true);
+			} else {
+				$param = array("success" => false);
+			}
+			echo json_encode($param);
 		}
-		echo json_encode($param);
+
+		if(isset($_POST['batal_bayar'])) {
+			$this->penjualan_m->kosongkan();
+			$query = $this->penjualan_m->get_cart();
+
+			if($query->num_rows() == 0){
+				$param = array("success" => true);
+			} else {
+				$param = array("success" => false);
+			}
+			echo json_encode($param);
+		}
+	}
+
+	public function cetak()
+	{
+		echo "cetak";
 	}
 	
 }

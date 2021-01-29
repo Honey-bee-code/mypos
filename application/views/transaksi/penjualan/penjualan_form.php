@@ -67,7 +67,8 @@
                             <td>
                                 <div class="form-group input-group">
                                     <input type="hidden" id="id_barang">
-                                    <input type="hidden" id="stok">
+                                    <input type="text" id="stok">
+                                    <input type="text" id="qty_keranjang">
                                     <input type="hidden" id="harga">
                                     <input type="text" id="barcode" class="form-control" autofocus>
                                     <span class="input-group-btn">
@@ -348,6 +349,9 @@ $(document).on('click', '#pilih', function(){
     $('#stok').val($(this).data('stok'))
     $('#modal-barang').modal('hide')
 })
+function get_cart_qty(){
+    var
+}
 
 $(document).on('click', '#tambah_keranjang', function(){
     var idBarang = $('#id_barang').val()
@@ -357,11 +361,11 @@ $(document).on('click', '#tambah_keranjang', function(){
     if(id_barang == ''){
         alert('Produk / barang belum dipilih')
         $('#barcode').focus()
-    } else if(stok < 1) {
+    } else if(stok < 1 || parseInt(stok) < parseInt(qty)) {
         alert('Stok tidak mencukupi')
-        $('#id_barang').val('')
-        $('#barcode').val('')
-        $('#barcode').focus()
+        // $('#id_barang').val('')
+        // $('#barcode').val('')
+        $('#qty').focus()
     } else {
         $.ajax({
             type: 'POST',
@@ -444,27 +448,6 @@ $(document).on('keyup mouseup', '#harga_barang, #qty_barang, #diskon_barang', fu
     hitung_edit_modal()
 })
 
-$(document).on('click', '#hapus_keranjang', function(){
-    if(confirm('Apakah anda yakin')){
-        var cart_id = $(this).data('cartid')
-        $.ajax({
-            type: 'POST',
-            url: '<?=site_url('penjualan/cart_del')?>',
-            dataType: 'json',
-            data: {'id_cart' : cart_id},
-            success: function(result) {
-                if(result.success == true) {
-                    $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
-                        calculate()
-                    })
-                } else {
-                    alert('Gagal menghapus barang dari keranjang')
-                }
-            }
-        })
-    }
-})
-
 $(document).on('click', '#update_keranjang', function(){
     var cart_id = $('#cartid_barang').val()
     var harga = $('#harga_barang').val()
@@ -531,6 +514,7 @@ $(document).on('click', '#proses_pembayaran', function(){
                 success: function(result){
                     if(result.success) {
                         alert('Transaksi berhasil');
+                        // window.open('<?=site_url('penjualan/cetak')?>' + result.id_penjualan, '_blank')
                     } else {
                         alert('Transaksi gagal');
                     }
@@ -538,6 +522,50 @@ $(document).on('click', '#proses_pembayaran', function(){
                 }
             })
         }
+    } 
+})
+
+$(document).on('click', '#hapus_keranjang', function(){
+    if(confirm('Apakah anda yakin')){
+        var cart_id = $(this).data('cartid')
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url('penjualan/cart_del')?>',
+            dataType: 'json',
+            data: { 'hapus_keranjang': true, 'id_cart' : cart_id},
+            success: function(result) {
+                if(result.success == true) {
+                    $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function(){
+                        calculate()
+                    })
+                } else {
+                    alert('Gagal menghapus barang dari keranjang')
+                }
+            }
+        })
+    }
+})
+
+$(document).on('click', '#cancel_payment', function() {
+    if(confirm('Apakah anda yakin')) {
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url('penjualan/cart_del')?>',
+            dataType: 'json',
+            data: {'batal_bayar': true},
+            success: function(result) {
+                if(result.success == true) {
+                    $('#tabel_keranjang').load('<?=site_url('penjualan/cart_data')?>', function() {
+                        calculate()
+                    })
+                }
+            }
+        })
+        $('#diskon').val(0)
+        $('#cash').val(0)
+        $('#customer').val('').change()
+        $('#barcode').val('')
+        $('#diskon').focus()
     }
 })
 
