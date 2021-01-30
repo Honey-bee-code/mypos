@@ -550,7 +550,7 @@ $(document).on('click', '#proses_pembayaran', function(){
                 success: function(result){
                     if(result.success) {
                         alert('Transaksi berhasil');
-                        window.open('<?=site_url('penjualan/cetak')?>', '_blank')
+                        // window.open('<?=site_url('penjualan/cetak')?>', '_blank')
                         // window.open('<?=site_url('penjualan/cetak')?>' + result.id_penjualan, '_blank')
                     } else {
                         alert('Transaksi gagal');
@@ -602,7 +602,7 @@ $(document).on('click', '#cancel_payment', function() {
         $('#cash').val(0)
         $('#customer').val('').change()
         $('#barcode').val('')
-        $('#diskon').focus()
+        $('#barcode').focus()
     }
 })
 

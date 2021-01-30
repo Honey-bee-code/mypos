@@ -16,7 +16,7 @@ class Penjualan_m extends CI_Model {
         } else {
             $no = "0001";
         }
-        $invoice = "HBC".date('ymd').$no;
+        $invoice = "HBC".date('ymd').$no; 
         return $invoice;
     }
 
