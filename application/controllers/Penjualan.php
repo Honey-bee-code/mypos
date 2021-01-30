@@ -117,7 +117,13 @@ class Penjualan extends CI_Controller {
 
 	public function cetak()
 	{
-		echo "cetak";
+		echo "cetak laporan penjualan";
 	}
 	
+	public function hapus()
+	{
+		echo "hapus";
+	}
+	
+
 }

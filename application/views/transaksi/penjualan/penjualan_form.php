@@ -2,7 +2,7 @@
 <section class="content-header">
   <h1>
     Penjualan
-    <small>Transaksi Penjualan</small>
+    <small>Sale Transaction</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
@@ -116,7 +116,7 @@
             <div class="box box-widget">
                 <div class="box-body">
                     <div align="right">
-                        <h4>Kode Transaksi <b><span id="invoice"><?= $invoice ?></span></b></h4>
+                        <h4>Invoice <small> ( Kode transaksi ) </small><b><span id="invoice"><?= $invoice ?></span></b></h4>
                         <h1><b><span id="grand_total2" style="font-size:50pt">0</span></b></h1>
                     </div>
                 </div>
@@ -550,6 +550,7 @@ $(document).on('click', '#proses_pembayaran', function(){
                 success: function(result){
                     if(result.success) {
                         alert('Transaksi berhasil');
+                        window.open('<?=site_url('penjualan/cetak')?>', '_blank')
                         // window.open('<?=site_url('penjualan/cetak')?>' + result.id_penjualan, '_blank')
                     } else {
                         alert('Transaksi gagal');

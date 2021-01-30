@@ -174,13 +174,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview <?=$this->uri->segment(1) == 'laporan' ? 'active' : ''?>">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i><span>Laporan</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Sales</a></li>
+                        <li <?=$this->uri->segment(1) == 'laporan' || $this->uri->segment(1) == 'penjualan' ? 'class="active"' : ''?>><a href="<?=site_url('laporan/penjualan')?>"><i class="fa fa-circle-o"></i> Penjualan</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Stok</a></li>
                     </ul>
                 </li>
