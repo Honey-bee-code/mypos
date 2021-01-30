@@ -118,6 +118,7 @@ class Penjualan_m extends CI_Model {
         if($id != null) {
             $this->db>where('id_penjualan', $id);
         }
+        $this->db->order_by('tanggal', 'desc');
         $query = $this->db->get();
         return $query;
     }
@@ -131,5 +132,13 @@ class Penjualan_m extends CI_Model {
         }
         $query = $this->db->get();
         return $query;
+    }
+
+    public function del_sale($id)
+    {
+        $this->db->where('id_penjualan', $id);
+        $this->db->delete('t_penjualan_detail');
+        $this->db->where('id_penjualan', $id);
+        $this->db->delete('t_penjualan');
     }
 }

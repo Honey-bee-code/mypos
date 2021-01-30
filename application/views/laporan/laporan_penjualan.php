@@ -40,7 +40,7 @@
                     <tr>
                         <td class="text-center" width="5%"><?=$no++?></td>
                         <td><?=$data->invoice?></td>
-                        <td><?=$data->tanggal?></td>
+                        <td><?=indo_date($data->tanggal)?></td>
                         <td><?=$data->nama_customer == null ? "Umum" : $data->nama_customer?></td>
                         <td class="text-right"><?=indo_currency($data->total_harga)?></td>
                         <td class="text-right"><?=$data->diskon?></td>

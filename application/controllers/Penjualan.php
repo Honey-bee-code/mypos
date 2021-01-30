@@ -120,9 +120,13 @@ class Penjualan extends CI_Controller {
 		echo "cetak laporan penjualan";
 	}
 	
-	public function hapus()
+	public function hapus($id)
 	{
-		echo "hapus";
+		$this->penjualan_m->del_sale($id);
+        if($this->db->affected_rows() > 0){
+            echo "<script>alert('Data berhasil dihapus')</script>";
+        }
+        echo "<script>window.location='" .site_url('laporan/penjualan'). "'</script>";
 	}
 	
 

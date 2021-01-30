@@ -411,9 +411,11 @@ $(document).on('click', '#tambah_keranjang', function(){
                             $('#id_barang').val('')
                             $('#barcode').val('')
                             $('#qty').val(1)
-                            $('#barcode').focus('')
+                            $('#stok').val('')
+                            $('#barcode').focus()
                         } else {
                             alert('Gagal menambahkan barang ke keranjang')
+                            $('#barcode').focus()
                         }
                     }
 
