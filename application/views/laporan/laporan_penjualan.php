@@ -47,13 +47,20 @@
                         <td class="text-right"><?=indo_currency($data->harga_semua)?></td>
                         <td><?=$data->kasir?></td>
                         <td class="text-center" width="180px">
-                            <button class="btn btn-default btn-xs">Detail</button>
-                                <a href="<?=site_url('penjualan/cetak/' .$data->id_penjualan)?>" target="_blank" class="btn btn-info btn-xs">
-                                    <i class="fa fa-print"></i> Cetak
-                                </a>
-                                <a href="<?=site_url('penjualan/hapus/' .$data->id_penjualan)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </a>
+                            <button class="btn btn-default btn-xs" id="detail" 
+                            data-toggle="modal" 
+                            data-target="#modal-detail"
+                            data-invoice="<?=$data->invoice?>"
+                            data-customer="<?=$data->nama_customer == null ? "Umum" : $data->nama_customer?>"
+                            data-tanggal="<?=$data->tanggal_input?>"
+                            data-kasir="<?=$data->kasir?>"
+                            >Detail</button>
+                            <a href="<?=site_url('penjualan/cetak/' .$data->id_penjualan)?>" target="_blank" class="btn btn-info btn-xs">
+                                <i class="fa fa-print"></i> Cetak
+                            </a>
+                            <a href="<?=site_url('penjualan/hapus/' .$data->id_penjualan)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -62,3 +69,56 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="modal-detail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Detail Laporan Penjualan</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                    <label>Invoice</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="invoice"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Pelanggan</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="customer"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Tanggal & waktu</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="tanggal"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Kasir</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="kasir"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#detail', function(){
+            $('#invoice').text($(this).data('invoice'));
+            $('#customer').text($(this).data('customer'));
+            $('#tanggal').text($(this).data('tanggal'));
+            $('#kasir').text($(this).data('kasir')); 
+        })
+    })
+</script>
