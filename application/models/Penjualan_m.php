@@ -119,6 +119,20 @@ class Penjualan_m extends CI_Model {
         return $query;
     }
 
+    public function get_sale_pagination($limit = null, $start = null)
+    {
+        $this->db->select('*, customer.nama as nama_customer, user.username as kasir,
+                            t_penjualan.created as tanggal_input');
+        $this->db->from('t_penjualan');
+        $this->db->join('customer', 't_penjualan.id_customer = customer.id_customer', 'left');
+        $this->db->join('user', 't_penjualan.id_user = user.id_user');
+        
+        $this->db->order_by('tanggal_input', 'desc');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_sale_detail($sale_id = null)
     {
         $this->db->from('t_penjualan_detail');

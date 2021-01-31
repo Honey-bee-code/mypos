@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    $no = 1;
+                    $no = $this->uri->segment(3) ? $this->uri->segment(3) + 1 : 1;
                     foreach($row->result() as $key => $data) { ?>
                     <tr>
                         <td class="text-center" width="5%"><?=$no++?></td>
@@ -73,6 +73,11 @@
                     <?php } ?>
                 </tbody>
             </table>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <?=$pagination?>
+            </ul>
         </div>
     </div>
 </section>
