@@ -130,7 +130,6 @@
 
 <script>
 $(document).on('click', '#detail', function(){
-    // $('#sale_id').val($(this).data('sale_id'));
     $('#invoice').text($(this).data('invoice'));
     $('#customer').text($(this).data('customer'));
     $('#tanggal').text($(this).data('tanggal'));

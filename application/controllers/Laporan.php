@@ -12,6 +12,7 @@ class Laporan extends CI_Controller {
 
 	public function penjualan()
 	{
+        $this->load->library('pagination');
         $data['row'] = $this->penjualan_m->get_sale();
         // $id = $this->input->post('id_sale');
         // $data['detail'] = $this->penjualan_m->get_sale_detail($id);
