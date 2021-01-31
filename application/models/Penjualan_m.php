@@ -61,11 +61,7 @@ class Penjualan_m extends CI_Model {
         }
         $this->db->delete('t_keranjang');
     }
-    public function kosongkan()
-    {
-        $this->db->truncate('t_keranjang');
-    }
-
+    
     public function update_cart_qty($post) {
         $sql = "UPDATE t_keranjang SET 
                 harga = '$post[harga]',
@@ -118,14 +114,13 @@ class Penjualan_m extends CI_Model {
         if($id != null) {
             $this->db>where('id_penjualan', $id);
         }
-        $this->db->order_by('tanggal', 'desc');
+        $this->db->order_by('tanggal_input', 'desc');
         $query = $this->db->get();
         return $query;
     }
 
     public function get_sale_detail($sale_id = null)
     {
-        $this->db->select('*, p_barang.nama as nama_barang');
         $this->db->from('t_penjualan_detail');
         $this->db->join('p_barang', 't_penjualan_detail.id_barang = p_barang.id_barang');
         if($sale_id != null) {

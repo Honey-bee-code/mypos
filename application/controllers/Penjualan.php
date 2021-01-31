@@ -103,10 +103,9 @@ class Penjualan extends CI_Controller {
 		}
 
 		if(isset($_POST['batal_bayar'])) {
-			$this->penjualan_m->kosongkan();
-			$query = $this->penjualan_m->get_cart();
-
-			if($query->num_rows() == 0){
+			$this->penjualan_m->hapus(['id_user' => $this->session->userdata('userid')]);
+			
+			if($this->db->affected_rows() > 0){
 				$param = array("success" => true);
 			} else {
 				$param = array("success" => false);

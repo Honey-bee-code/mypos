@@ -306,7 +306,7 @@
                 <h4 class="modal-title">Edit Keranjang Barang</h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="cartid_barang"> <!-- wajib ada, hampir lupa -->
+                <input type="hidden" id="cartid_barang">
                 <div class="form-group">
                     <label for="barcode_barang">Produk barang</label>
                     <div class="row">

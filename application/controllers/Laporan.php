@@ -13,9 +13,16 @@ class Laporan extends CI_Controller {
 	public function penjualan()
 	{
         $data['row'] = $this->penjualan_m->get_sale();
-        $data['detail'] = $this->penjualan_m->get_sale_detail();
-		$this->template->load('template', 'laporan/laporan_penjualan', $data);
-	}
+        // $id = $this->input->post('id_sale');
+        // $data['detail'] = $this->penjualan_m->get_sale_detail($id);
 
-	
+		$this->template->load('template', 'laporan/laporan_penjualan', $data);
+    }
+    
+    public function produk($sale_id)
+    {
+        $detail = $this->penjualan_m->get_sale_detail($sale_id)->result();
+        echo json_encode($detail);
+    }
+   	
 }
