@@ -12,7 +12,8 @@ class Laporan extends CI_Controller {
 
 	public function penjualan()
 	{
-		$data['row'] = $this->penjualan_m->get_sale();
+        $data['row'] = $this->penjualan_m->get_sale();
+        $data['detail'] = $this->penjualan_m->get_sale_detail();
 		$this->template->load('template', 'laporan/laporan_penjualan', $data);
 	}
 

@@ -125,6 +125,7 @@ class Penjualan_m extends CI_Model {
 
     public function get_sale_detail($sale_id = null)
     {
+        $this->db->select('*, p_barang.nama as nama_barang');
         $this->db->from('t_penjualan_detail');
         $this->db->join('p_barang', 't_penjualan_detail.id_barang = p_barang.id_barang');
         if($sale_id != null) {

@@ -54,6 +54,11 @@
                             data-customer="<?=$data->nama_customer == null ? "Umum" : $data->nama_customer?>"
                             data-tanggal="<?=$data->tanggal_input?>"
                             data-kasir="<?=$data->kasir?>"
+                            data-diskon="<?=$data->diskon?>"
+                            data-bayar="<?=$data->bayar?>"
+                            data-total_akhir="<?=$data->harga_semua?>"
+                            data-kembalian="<?=$data->kembalian?>"
+                            data-catatan="<?=$data->nota?>"
                             >Detail</button>
                             <a href="<?=site_url('penjualan/cetak/' .$data->id_penjualan)?>" target="_blank" class="btn btn-info btn-xs">
                                 <i class="fa fa-print"></i> Cetak
@@ -107,6 +112,64 @@
                         <span id="kasir"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Diskon</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="diskon"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Bayar</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="bayar"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Total Akhir</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="total_akhir"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Kembalian</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <span id="kembalian"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Catatan</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span id="catatan"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Produk</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Barang</th>
+                                <th>Harga</th>
+                                <th>Qty</th>
+                                <th>Disc</th>
+                                <th>Total</th>
+                            </tr>
+                            <?php foreach($detail->result() as $d => $data) { ?>
+                            <tr>
+                                <td><?=$data->id_penjualan?></td>
+                            </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -119,6 +182,11 @@
             $('#customer').text($(this).data('customer'));
             $('#tanggal').text($(this).data('tanggal'));
             $('#kasir').text($(this).data('kasir')); 
+            $('#diskon').text($(this).data('diskon')); 
+            $('#bayar').text($(this).data('bayar')); 
+            $('#total_akhir').text($(this).data('total_akhir')); 
+            $('#kembalian').text($(this).data('kembalian')); 
+            $('#catatan').text($(this).data('catatan')); 
         })
     })
 </script>
