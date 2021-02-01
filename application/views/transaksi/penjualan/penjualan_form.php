@@ -120,7 +120,7 @@
                 <div class="box-body">
                     <div align="right">
                         <h4>Invoice <small> ( Kode transaksi ) </small><b><span id="invoice"><?= $invoice ?></span></b></h4>
-                        <h1><b><span id="grand_total2" style="font-size:50pt">0</span></b></h1>
+                        <b><span id="grand_total2" style="font-size:50pt">0</span></b>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="number" id="diskon" value="0" min="0" class="form-control">
+                                    <input type="number" id="diskon" onfocus="{this.value='';}" value="0" min="0" class="form-control">
                                 </div>
                             </td>
                         </tr>
@@ -204,7 +204,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="number" id="cash" value="0" min="0" class="form-control">
+                                    <input type="number" id="cash" onfocus="{this.value='';}" value="0" min="0" class="form-control">
                                 </div>
                             </td>
                         </tr>
@@ -650,3 +650,4 @@ function showServerTime(obj, time) {
     methods.displayTime();
 }
 </script>
+
