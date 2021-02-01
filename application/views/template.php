@@ -181,7 +181,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li <?=$this->uri->segment(1) == 'laporan' || $this->uri->segment(1) == 'penjualan' ? 'class="active"' : ''?>><a href="<?=site_url('laporan/penjualan')?>"><i class="fa fa-circle-o"></i> Penjualan</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Stok</a></li>
+                        <li <?=$this->uri->segment(1) == 'laporan' || $this->uri->segment(1) == 'stok' ? 'class="active"' : ''?>><a href="<?=site_url('laporan/stok')?>"><i class="fa fa-circle-o"></i> Stok</a></li>
                     </ul>
                 </li>
                 <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"' : ''?>><a href="<?=site_url('supplier')?>"><i class="fa fa-truck"></i> <span>Suppliers</span></a></li>

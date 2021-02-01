@@ -13,121 +13,99 @@
 
 <!-- Main content -->
 <section class="content">
-
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tambah Stok Masuk</h3>
+            <h3 class="box-title">Histori Stok Masuk</h3>
             <div class="pull-right">
-                <a href="<?=site_url('stok/masuk')?>" class="btn btn-warning btn-sm">
-                <i class="fa fa-undo"></i> Kembali</a>
+                <a href="<?=site_url('stok/masuk/tambah')?>" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus"></i> Tambah Data</a>
             </div>
         </div>
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <form action="<?=site_url('stok/proses_masuk')?>" method="post">
-                        <div class="form-group">
-                            <label>Tanggal *</label>
-                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control" required>
-                        </div>
-                        <div>
-                            <label for="barcode">Barcode *</label>
-                        </div>
-                        <div class="form-group input-group">
-                            <input type="hidden" name="id_barang" id="id_barang">
-                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat" data-toggle="modal" 
-                                data-target="#modal-barang">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="nama_barang">Nama Barang *</label>
-                            <input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label for="nama_unit">Satuan Barang</label>
-                                    <input type="text" name="nama_unit" id="nama_unit" value="-" class="form-control" readonly>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="stok">Stok Awal</label>
-                                    <input type="text" name="stok" id="stok" value="-" class="form-control" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Detail Barang *</label>
-                            <input type="text" name="detail" id="detail" class="form-control" placeholder="Kulakan / tambahan / dll" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Supplier</label>
-                            <select name="supplier" id="" class="form-control">
-                                <option value="">- Pilih -</option>
-                                <?php foreach($supplier as $key => $data) { ?>
-                                    <option value="<?=$data->id_supplier?>"><?=$data->nama?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>QTY *</label>
-                            <input type="number" name="qty" id="qty" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="tambah" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
-                            <button type="reset" class="btn btn-sm"><i class="fa fa-refresh"></i> Reset</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="box-body table-responsive">
+            <table class="table table-bordered table-striped" id="tabel">
+                <thead>
+                    <tr>
+                        <th class="text-center">No.</th>
+                        <th>Nama Barang</th>
+                        <th>Tipe Data</th>
+                        <th>Detail</th>
+                        <th>Nama Supplier</th>
+                        <th>Qty</th>
+                        <th>Tanggal</th>
+                        <th>User</th>
+                        <th class="text-center">Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    $no = 1;
+                    foreach($row as $key => $data) { ?>
+                    <tr>
+                        <td class="text-center" width="5%"><?=$no++?></td>
+                        <td><?=$data->nama_barang?></td>
+                        <td><?=ucfirst($data->tipe)?></td>
+                        <td><?=$data->detail?></td>
+                        <td><?=$data->supplier?></td>
+                        <td><?=$data->qty?></td>
+                        <td><?=$data->tanggal?></td>
+                        <td><?=ucfirst($data->user)?></td>
+                        <td class="text-center" width="140px">
+                            <a class="btn btn-default btn-xs" id="detail_klik"
+                            data-toggle="modal" 
+                            data-target="#modal-detail"
+                            data-barcode="<?=$data->barcode?>"
+                            data-namabarang="<?=$data->nama_barang?>"
+                            data-supplier="<?=$data->supplier?>"
+                            data-detail="<?=$data->detail?>"
+                            data-qty="<?=$data->qty?>"
+                            data-tanggal="<?=indo_date($data->tanggal)?>">
+                                <i class="fa fa-eye"></i> Detail
+                            </a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
-<div class="modal fade" id="modal-barang">
-    <div class="modal-dialog">
+<div class="modal fade" id="modal-detail">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Silahkan Pilih Barang</h4>
+                <h4 class="modal-title">Detail Stok Masuk</h4>
             </div>
             <div class="modal-body table-responsive">
-                <table class="table table-bordered table-striped" id="tabel">
-                    <thead>
+                <table class="table table-bordered no-margin">
+                    <body>
                         <tr>
-                            <th>Barcode</th>
-                            <th>Nama</th>
-                            <th>Unit</th>
-                            <th>Harga</th>
-                            <th>Stok</th>
-                            <th>Action</th>
+                            <th style="width: 35%">Barcode</th>
+                            <td><span id="barcode"></span></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach($barang as $key => $data){ ?>
                         <tr>
-                            <td><?=$data->barcode?></td>
-                            <td><?=$data->nama?></td>
-                            <td><?=$data->nama_unit?></td>
-                            <td class="text-right"><?=indo_currency($data->harga)?></td>
-                            <td class="text-right"><?=$data->stok?></td>
-                            <td class="text-center">
-                                <button class="btn btn-xs btn-info" id="pilih" 
-                                data-id="<?=$data->id_barang?>"
-                                data-barcode="<?=$data->barcode?>"
-                                data-nama="<?=$data->nama?>"
-                                data-unit="<?=$data->nama_unit?>"
-                                data-stok="<?=$data->stok?>">
-                                    <i class="fa fa-check"></i> Pilih
-                                </button>
-                            </td>
+                            <th>Nama Barang</th>
+                            <td><span id="namabarang"></span></td>
                         </tr>
-                        <?php } ?>
-                    </tbody>
+                        <tr>
+                            <th>Supplier</th>
+                            <td><span id="supplier"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Qty</th>
+                            <td><span id="qty"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal</th>
+                            <td><span id="tanggal"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Detail</th>
+                            <td><span id="detail"></span></td>
+                        </tr>
+                    </body>
                 </table>
             </div>
         </div>
@@ -136,18 +114,19 @@
 
 <script>
     $(document).ready(function() {
-        $(document).on('click', '#pilih', function(){
-            var id_barang = $(this).data('id');
+        $(document).on('click', '#detail_klik', function(){
             var barcode = $(this).data('barcode');
-            var nama = $(this).data('nama');
-            var nama_unit = $(this).data('unit');
-            var stok = $(this).data('stok');
-            $('#id_barang').val(id_barang);
-            $('#barcode').val(barcode);
-            $('#nama_barang').val(nama);
-            $('#nama_unit').val(nama_unit);
-            $('#stok').val(stok);
-            $('#modal-barang').modal('hide');
+            var namabarang = $(this).data('namabarang');
+            var supplier = $(this).data('supplier');
+            var qty = $(this).data('qty');
+            var tanggal = $(this).data('tanggal');
+            var detail = $(this).data('detail');
+            $('#barcode').text(barcode); // pake text karena <span>
+            $('#namabarang').text(namabarang);
+            $('#supplier').text(supplier);
+            $('#qty').text(qty);
+            $('#tanggal').text(tanggal);
+            $('#detail').text(detail);
         })
     })
 </script>

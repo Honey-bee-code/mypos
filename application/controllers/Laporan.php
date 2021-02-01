@@ -7,7 +7,7 @@ class Laporan extends CI_Controller {
         parent::__construct();
         tidak_login();
         cek_admin();
-        $this->load->model('penjualan_m');
+        $this->load->model(['penjualan_m', 'stok_m']);
     }
 
 	public function penjualan()
@@ -54,6 +54,15 @@ class Laporan extends CI_Controller {
         $data['row'] = $this->stok_m->get()->result();
 
 		$this->template->load('template', 'laporan/laporan_stok', $data);
+    }
+
+    public function hapus_stok($id)
+    {
+        $this->stok_m->hapus($id);
+        if($this->db->affected_rows() > 0){
+            echo "<script>alert('Data berhasil dihapus')</script>";
+        }
+        echo "<script>window.location='" .site_url('laporan/stok'). "'</script>";
     }
    	
 }

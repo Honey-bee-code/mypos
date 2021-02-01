@@ -4,7 +4,11 @@ class Stok_m extends CI_Model {
 
     public function get($id = null)
     {
+        $this->db->select('*, p_barang.nama as nama_barang, supplier.nama as supplier, user.username as user');
         $this->db->from('t_stok');
+        $this->db->join('p_barang', 't_stok.id_barang = p_barang.id_barang');
+        $this->db->join('supplier', 't_stok.id_supplier = supplier.id_supplier', 'left');
+        $this->db->join('user', 't_stok.id_user = user.id_user');
         if($id != null){
             $this->db->where('id_stok', $id);
         }
