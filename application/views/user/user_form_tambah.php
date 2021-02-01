@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group <?=form_error('username') ? 'has-error' : null?>">
                             <label for="username">Username *</label>
-                            <input type="text" name="username" value="<?=set_value('username')?>" class="form-control">
+                            <input type="text" name="username" value="<?=set_value('username')?>" class="form-control" >
                             <?=form_error('username')?>
                         </div>
                         <div class="form-group <?=form_error('password') ? 'has-error' : null?>">

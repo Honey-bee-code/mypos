@@ -23,7 +23,7 @@ class User_m extends CI_Model {
         return $query;
     }
 
-    public function tambah($post)
+    public function tambah($post) 
     {
         $param['nama'] = $post['nama'];
         $param['username'] = $post['username'];

@@ -23,54 +23,59 @@
             </div>
         </div>
         <div class="box-body">
-            <?php echo validation_errors(); ?>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <form action="<?=site_url('stok/proses_keluar')?>" method="post">
-                        <div class="form-group">
+                    <form action="<?=site_url('stok/proses_keluar')?>"  method="post">
+                    <!-- <?=validation_errors()?> -->
+                        <div class="form-group <?=form_error('tanggal') ? 'has-error' : null?>">
                             <label>Tanggal *</label>
-                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control" required>
+                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control">
+                            <?=form_error('tanggal')?>
                         </div>
                         <div>
                             <label for="barcode">Barcode *</label>
                         </div>
-                        <div class="form-group input-group">
-                            <input type="text" name="id_barang" id="id_barang">
-                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus">
+                        <div class="form-group input-group <?=form_error('barcode') ? 'has-error' : null?>">
+                            <input type="hidden" name="id_barang" id="id_barang">
+                            <input type="text" name="barcode" id="barcode" value="<?=set_value('barcode')?>" class="form-control"  autofocus">
+                            <?=form_error('barcode')?>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" 
                                 data-target="#modal-barang">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
+                            
                         </div>
                         <div class="form-group">
                             <label for="nama_barang">Nama Barang *</label>
-                            <input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly>
+                            <input type="text" name="nama_barang" id="nama_barang" value="<?=set_value('nama_barang')?>" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-8">
                                     <label for="nama_unit">Satuan Barang</label>
-                                    <input type="text" name="nama_unit" id="nama_unit" value="-" class="form-control" readonly>
+                                    <input type="text" name="nama_unit" id="nama_unit" value="<?=set_value('nama_unit')?>" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="stok">Stok Awal</label>
-                                    <input type="text" name="stok" id="stok" value="-" class="form-control" readonly>
+                                    <input type="text" name="stok" id="stok" value="<?=set_value('stok')?>" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Detail Barang *</label>
-                            <input type="text" name="detail" id="detail" class="form-control" placeholder="Hilang / rusak / kadaluarsa / dll" required>
+                        <div class="form-group <?=form_error('detail') ? 'has-error' : null?>">
+                            <label for="detail">Detail Barang *</label>
+                            <input type="text" name="detail"  id="detail" value="<?=set_value('detail')?>" class="form-control" placeholder="Hilang / rusak / kadaluarsa / dll" >
+                            <?=form_error('detail')?>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group <?=form_error('qty') ? 'has-error' : null?>">
                             <label>QTY *</label>
-                            <input type="number" name="qty" id="qty" class="form-control" required>
+                            <input type="number" name="qty" id="qty" class="form-control">
+                            <?=form_error('qty')?>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="tambah" id="tambah" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
                             <button type="reset" class="btn btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                         </div>
                     </form>

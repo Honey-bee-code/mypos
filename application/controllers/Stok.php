@@ -8,6 +8,7 @@ class Stok extends CI_Controller {
         tidak_login();
         // cek_admin();
         $this->load->model(['barang_m', 'supplier_m', 'stok_m']);
+        
 
     }
 
@@ -77,14 +78,18 @@ class Stok extends CI_Controller {
         }
         echo "<script>window.location='" .site_url('stok/masuk'). "'</script>";
     }
-
+    
     public function proses_keluar()
     {
         $post = $this->input->post(null, TRUE);
+        $barang = $this->barang_m->get()->result();
+        $data = ['barang' => $barang];
+    
+        $this->template->load('template', 'transaksi/stok_keluar/stok_keluar_form', $data);
 
-		
         $this->stok_m->tambah_stok_keluar($post);
         $this->barang_m->update_stok_keluar($post);
+
         if($this->db->affected_rows() > 0){
             echo "<script>alert('Data stok keluar berhasil disimpan')</script>";
         }

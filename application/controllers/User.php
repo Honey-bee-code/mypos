@@ -8,7 +8,7 @@ class User extends CI_Controller {
         tidak_login();
         cek_admin();
         $this->load->model('user_m');
-        $this->load->library('form_validation');        
+        $this->load->library('form_validation');         
     }
 
 	public function index()
@@ -22,9 +22,9 @@ class User extends CI_Controller {
     {
         
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|is_unique[user.nama]');
-        $this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|is_unique[user.username]');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]');
+        $this->form_validation->set_rules('nama', 'Namanya', 'required|is_unique[user.nama]');
+        $this->form_validation->set_rules('username', 'Usernamenya', 'required|min_length[4]|is_unique[user.username]');
+        $this->form_validation->set_rules('password', 'Passwordnya', 'required|min_length[4]');
         $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
             array('matches' =>'%s tidak sesuai dengan Password')
         );
