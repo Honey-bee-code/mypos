@@ -29,50 +29,46 @@
                     <!-- <?=validation_errors()?> -->
                         <div class="form-group <?=form_error('tanggal') ? 'has-error' : null?>">
                             <label>Tanggal *</label>
-                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control">
+                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>" class="form-control" required>
                             <?=form_error('tanggal')?>
                         </div>
                         <div>
                             <label for="barcode">Barcode *</label>
                         </div>
-                        <div class="form-group input-group <?=form_error('barcode') ? 'has-error' : null?>">
+                        <div class="form-group input-group">
                             <input type="hidden" name="id_barang" id="id_barang">
-                            <input type="text" name="barcode" id="barcode" value="<?=set_value('barcode')?>" class="form-control"  autofocus">
-                            <?=form_error('barcode')?>
+                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" 
                                 data-target="#modal-barang">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
-                            
                         </div>
                         <div class="form-group">
                             <label for="nama_barang">Nama Barang *</label>
-                            <input type="text" name="nama_barang" id="nama_barang" value="<?=set_value('nama_barang')?>" class="form-control" readonly>
+                            <input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-8">
                                     <label for="nama_unit">Satuan Barang</label>
-                                    <input type="text" name="nama_unit" id="nama_unit" value="<?=set_value('nama_unit')?>" class="form-control" readonly>
+                                    <input type="text" name="nama_unit" id="nama_unit" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="stok">Stok Awal</label>
-                                    <input type="text" name="stok" id="stok" value="<?=set_value('stok')?>" class="form-control" readonly>
+                                    <input type="text" name="stok" id="stok" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group <?=form_error('detail') ? 'has-error' : null?>">
+                        <div class="form-group">
                             <label for="detail">Detail Barang *</label>
-                            <input type="text" name="detail"  id="detail" value="<?=set_value('detail')?>" class="form-control" placeholder="Hilang / rusak / kadaluarsa / dll" >
-                            <?=form_error('detail')?>
+                            <input type="text" name="detail"  id="detail" class="form-control" placeholder="Hilang / rusak / kadaluarsa / dll" required>
                         </div>
                         
-                        <div class="form-group <?=form_error('qty') ? 'has-error' : null?>">
+                        <div class="form-group">
                             <label>QTY *</label>
-                            <input type="number" name="qty" id="qty" class="form-control">
-                            <?=form_error('qty')?>
+                            <input type="number" name="qty" id="qty" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" name="submit" id="submit" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
