@@ -41,18 +41,18 @@
                         <td class="text-center" width="5%"><?=$no++?></td>
                         <td><?=$data->invoice?></td>
                         <td><?=indo_date($data->tanggal)?></td>
-                        <td><?=$data->nama_customer == null ? "Umum" : $data->nama_customer?></td>
+                        <td><?=$data->id_customer == null ? "Umum" : $data->nama_customer?></td>
                         <td class="text-right"><?=indo_currency($data->total_harga)?></td>
                         <td class="text-right"><?=$data->diskon?></td>
                         <td class="text-right"><?=indo_currency($data->harga_semua)?></td>
-                        <td><?=$data->kasir?></td>
+                        <td><?=ucfirst($data->kasir)?></td>
                         <td class="text-center" width="180px">
                             <button class="btn btn-default btn-xs" id="detail" 
                             data-toggle="modal" 
                             data-target="#modal-detail"
                             data-sale_id="<?=$data->id_penjualan?>"
                             data-invoice="<?=$data->invoice?>"
-                            data-customer="<?=$data->nama_customer == null ? "Umum" : $data->nama_customer?>"
+                            data-customer="<?=$data->id_customer == null ? "Umum" : $data->nama_customer?>"
                             data-tanggal="<?=$data->tanggal_input?>"
                             data-total="<?=indo_currency($data->total_harga)?>"
                             data-kasir="<?=ucfirst($data->kasir)?>"

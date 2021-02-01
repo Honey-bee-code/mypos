@@ -555,8 +555,7 @@ $(document).on('click', '#proses_pembayaran', function(){
                 success: function(result){
                     if(result.success) {
                         alert('Transaksi berhasil');
-                        // window.open('<?=site_url('penjualan/cetak')?>', '_blank')
-                        // window.open('<?=site_url('penjualan/cetak')?>' + result.id_penjualan, '_blank')
+                        window.open('<?=site_url('penjualan/cetak/')?>' + result.sale_id, '_blank')
                     } else {
                         alert('Transaksi gagal');
                     }

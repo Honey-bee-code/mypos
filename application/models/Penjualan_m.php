@@ -104,7 +104,7 @@ class Penjualan_m extends CI_Model {
         $this->db->insert_batch('t_penjualan_detail', $param);
     }
 
-    public function get_sale($id = null)
+    public function get_sale($id = null) 
     {
         $this->db->select('*, customer.nama as nama_customer, user.username as kasir,
                             t_penjualan.created as tanggal_input');
@@ -112,7 +112,7 @@ class Penjualan_m extends CI_Model {
         $this->db->join('customer', 't_penjualan.id_customer = customer.id_customer', 'left');
         $this->db->join('user', 't_penjualan.id_user = user.id_user');
         if($id != null) {
-            $this->db>where('id_penjualan', $id);
+            $this->db->where('id_penjualan', $id);
         }
         $this->db->order_by('tanggal_input', 'desc');
         $query = $this->db->get();

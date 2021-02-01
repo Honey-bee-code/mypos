@@ -6,7 +6,7 @@ class Laporan extends CI_Controller {
     {
         parent::__construct();
         tidak_login();
-        // cek_admin();
+        cek_admin();
         $this->load->model('penjualan_m');
     }
 
@@ -15,7 +15,7 @@ class Laporan extends CI_Controller {
         $this->load->library('pagination');
         $config['base_url'] = site_url('laporan/penjualan');
         $config['total_rows'] = $this->penjualan_m->get_sale_pagination()->num_rows();
-        $config['per_page'] = 2;
+        $config['per_page'] = 5;
         $config['uri_segment'] = 3;
         $config['first_link'] = 'Awal';
         $config['last_link'] = 'Akhir';
@@ -47,6 +47,13 @@ class Laporan extends CI_Controller {
     {
         $detail = $this->penjualan_m->get_sale_detail($sale_id)->result();
         echo json_encode($detail);
+    }
+
+    public function stok()
+    {
+        $data['row'] = $this->stok_m->get()->result();
+
+		$this->template->load('template', 'laporan/laporan_stok', $data);
     }
    	
 }

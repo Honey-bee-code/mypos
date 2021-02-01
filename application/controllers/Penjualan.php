@@ -74,7 +74,7 @@ class Penjualan extends CI_Controller {
 			$this->penjualan_m->hapus(['id_user' => $this->session->userdata('userid')]);
 
 			if($this->db->affected_rows() > 0){
-				$param  = array("success" => true);
+				$param  = array("success" => true, "sale_id" => $sale_id);
 			} else {
 				$param  = array("success" => false);
 			}
@@ -114,9 +114,13 @@ class Penjualan extends CI_Controller {
 		}
 	}
 
-	public function cetak()
+	public function cetak($id)
 	{
-		echo "cetak laporan penjualan";
+		$data = array(
+			'sale' => $this->penjualan_m->get_sale($id)->row(), // row karena datanya satu
+			'sale_detail' => $this->penjualan_m->get_sale_detail($id)->result(), // result karena datanya banyak
+		);
+		$this->load->view('transaksi/penjualan/cetak_struk', $data);
 	}
 	
 	public function hapus($id)
