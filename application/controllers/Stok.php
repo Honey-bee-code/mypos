@@ -80,8 +80,9 @@ class Stok extends CI_Controller {
 
     public function proses_keluar()
     {
-
         $post = $this->input->post(null, TRUE);
+
+		
         $this->stok_m->tambah_stok_keluar($post);
         $this->barang_m->update_stok_keluar($post);
         if($this->db->affected_rows() > 0){

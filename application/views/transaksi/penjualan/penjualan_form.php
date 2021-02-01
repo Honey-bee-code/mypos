@@ -523,7 +523,7 @@ $(document).on('click', '#update_keranjang', function(){
 
             })
         }
-})
+}) 
 
 $(document).on('click', '#proses_pembayaran', function(){
     var id_customer = $('#customer').val()

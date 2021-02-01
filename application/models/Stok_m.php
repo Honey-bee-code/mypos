@@ -75,6 +75,8 @@ class Stok_m extends CI_Model {
             'tanggal' => $post['tanggal'],
             'id_user' => $this->session->userData('userid'),
         ];
+        
+        
         $this->db->insert('t_stok', $param);
     }
 

@@ -35,7 +35,7 @@
                             <label for="barcode">Barcode *</label>
                         </div>
                         <div class="form-group input-group">
-                            <input type="hidden" name="id_barang" id="id_barang">
+                            <input type="text" name="id_barang" id="id_barang">
                             <input type="text" name="barcode" id="barcode" class="form-control" required autofocus">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" 
@@ -70,7 +70,7 @@
                             <input type="number" name="qty" id="qty" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="tambah" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
+                            <button type="submit" name="tambah" id="tambah" class="btn btn-success btn-sm"><i class="fa fa-send"></i> Simpan</button>
                             <button type="reset" class="btn btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                         </div>
                     </form>
@@ -128,19 +128,18 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $(document).on('click', '#pilih', function(){
-            var id_barang = $(this).data('id');
-            var barcode = $(this).data('barcode');
-            var nama = $(this).data('nama');
-            var nama_unit = $(this).data('unit');
-            var stok = $(this).data('stok');
-            $('#id_barang').val(id_barang);
-            $('#barcode').val(barcode);
-            $('#nama_barang').val(nama);
-            $('#nama_unit').val(nama_unit);
-            $('#stok').val(stok);
-            $('#modal-barang').modal('hide');
-        })
-    })
+$(document).on('click', '#pilih', function(){
+    var id_barang = $(this).data('id');
+    var barcode = $(this).data('barcode');
+    var nama = $(this).data('nama');
+    var nama_unit = $(this).data('unit');
+    var stok = $(this).data('stok');
+    $('#id_barang').val(id_barang);
+    $('#barcode').val(barcode);
+    $('#nama_barang').val(nama);
+    $('#nama_unit').val(nama_unit);
+    $('#stok').val(stok);
+    $('#modal-barang').modal('hide');
+})
+
 </script>
