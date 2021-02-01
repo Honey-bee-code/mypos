@@ -23,7 +23,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="date" id="tanggal" value="<?=date('Y-m-d')?>" class="form-control">
+                                    <input type="date" id="tanggal" value="<?=date('Y-m-d')?>" class="form-control" readonly>
                                 </div>
                             </td>
                         </tr>
