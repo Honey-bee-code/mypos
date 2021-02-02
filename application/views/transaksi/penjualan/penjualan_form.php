@@ -42,13 +42,14 @@
                                 <label for="customer">Pelanggan</label>
                             </td>
                             <td>
-                                <div>
-                                    <select name="" id="customer" class="form-control">
-                                        <option value="">Umum</option>
-                                        <?php foreach($customer as $key => $value){ ?>
-                                            <option value="<?=$value->id_customer?>"><?=$value->nama?></option>
-                                        <?php } ?>
-                                    </select>
+                                <div class="form-group input-group">
+                                    <input type="hidden" id="id_customer">
+                                    <input type="text" id="customer" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-customer">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -253,6 +254,52 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="modal-customer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Silahkan Pilih Barang</h4>
+            </div>
+            <div class="modal-body table-responsive">
+                <table class="table table-bordered table-striped" id="tabel">
+                    <thead>
+                        <tr>
+                            <th>No. ID</th>
+                            <th>Nama</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Alamat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($customer as $c => $cust){ ?>
+                        <tr>
+                            <td><?=$cust->id_customer?></td>
+                            <td><?=$cust->nama?></td>
+                            <td><?=$cust->gender?></td>
+                            <td><?=$cust->phone?></td>
+                            <td><?=$cust->alamat?></td>
+                            <td class="text-center">
+                                <button class="btn btn-xs btn-info" id="pilih-cust" 
+                                data-id="<?=$cust->id_customer?>"
+                                data-nama="<?=$cust->nama?>"
+                                data-phone="<?=$cust->phone?>"
+                                data-alamat="<?=$cust->alamat?>">
+                                    <i class="fa fa-check"></i> Pilih
+                                </button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
 <div class="modal fade" id="modal-barang">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -360,6 +407,13 @@
 <script>
 $(document).ready(function(){
     calculate()
+})
+
+$(document).on('click', '#pilih-cust', function(){
+    $('#id_customer').val($(this).data('id'))
+    $('#customer').val($(this).data('nama'))
+    $('#modal-customer').modal('hide')
+
 })
 
 $(document).on('click', '#pilih', function(){
@@ -543,7 +597,7 @@ $(document).on('click', '#update_keranjang', function(){
 }) 
 
 $(document).on('click', '#proses_pembayaran', function(){
-    var id_customer = $('#customer').val()
+    var id_customer = $('#id_customer').val()
     var subtotal = $('#sub_total').val()
     var diskon = $('#diskon').val()
     var grandtotal = $('#grand_total').val()
