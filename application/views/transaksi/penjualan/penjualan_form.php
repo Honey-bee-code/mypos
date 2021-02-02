@@ -449,6 +449,13 @@ function calculate() {
     })
     isNaN(subtotal) ? $('#sub_total').val(0) : $('#sub_total').val(subtotal)
 
+    var cust = $('#customer').val()
+
+    if(cust != ''){
+        $('#diskon').val(500)
+    } else {
+        $('#diskon').val(0)
+    }
     var diskon = $('#diskon').val()
     var grand_total = subtotal - diskon
     if(isNaN(grand_total)){
@@ -465,7 +472,7 @@ function calculate() {
     var cash = $('#cash').val();
     cash != 0 ? $('#change').val(cash - grand_total) : $('#change').val(0)
 }
-$(document).on('keyup mouseup', '#diskon, #cash', function() {
+$(document).on('keyup mouseup', '#diskon, #cash, #customer', function() {
     calculate()
 })
 
