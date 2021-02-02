@@ -131,10 +131,5 @@ class Penjualan extends CI_Controller {
         }
         echo "<script>window.location='" .site_url('laporan/penjualan'). "'</script>";
 	}
-	
-	public function scan()
-	{
-		$this->template->load('template', 'transaksi/penjualan/code_scan' );
-	}
 
 }
