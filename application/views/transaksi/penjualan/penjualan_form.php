@@ -450,9 +450,11 @@ function calculate() {
     isNaN(subtotal) ? $('#sub_total').val(0) : $('#sub_total').val(subtotal)
 
     var cust = $('#customer').val()
+    var total = $('#sub_total').val()
+    var persen = total*10/100
 
     if(cust != ''){
-        $('#diskon').val(500)
+        $('#diskon').val(persen)
     } else {
         $('#diskon').val(0)
     }
