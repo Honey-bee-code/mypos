@@ -1,8 +1,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Stok Masuk
-    <small>Barang Masuk / Pembelian</small>
+    Laporan Stok
+    <small>Barang Masuk / Barang Keluar</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
@@ -15,11 +15,8 @@
 <section class="content">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Histori Stok Masuk</h3>
-            <div class="pull-right">
-                <a href="<?=site_url('stok/masuk/tambah')?>" class="btn btn-primary btn-sm">
-                <i class="fa fa-plus"></i> Tambah Data</a>
-            </div>
+            <h3 class="box-title">Data Stok</h3>
+            
         </div>
         <div class="box-body table-responsive">
             <table class="table table-bordered table-striped" id="tabel">
@@ -53,6 +50,7 @@
                             <a class="btn btn-default btn-xs" id="detail_klik"
                             data-toggle="modal" 
                             data-target="#modal-detail"
+                            data-tipe="<?=ucfirst($data->tipe)?>"
                             data-barcode="<?=$data->barcode?>"
                             data-namabarang="<?=$data->nama_barang?>"
                             data-supplier="<?=$data->supplier?>"
@@ -76,11 +74,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Detail Stok Masuk</h4>
+                <h4 class="modal-title">Detail Data Stok</h4>
             </div>
             <div class="modal-body table-responsive">
                 <table class="table table-bordered no-margin">
                     <body>
+                        <tr>
+                            <th style="width: 35%">Tipe Data</th>
+                            <td><span id="tipe"></span></td>
+                        </tr>
                         <tr>
                             <th style="width: 35%">Barcode</th>
                             <td><span id="barcode"></span></td>
@@ -127,6 +129,7 @@
             $('#qty').text(qty);
             $('#tanggal').text(tanggal);
             $('#detail').text(detail);
+            $('#tipe').text($(this).data('tipe'));
         })
     })
 </script>
