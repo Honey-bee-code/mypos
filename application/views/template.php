@@ -204,6 +204,7 @@
 <script>
     $(document).ready(function(){
         $('#tabel').DataTable()
+        $('#tabel1').DataTable()
     })
 </script>
 

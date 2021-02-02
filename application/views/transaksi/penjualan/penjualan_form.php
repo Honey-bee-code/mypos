@@ -310,7 +310,7 @@
                 <h4 class="modal-title">Silahkan Pilih Barang</h4>
             </div>
             <div class="modal-body table-responsive">
-                <table class="table table-bordered table-striped" id="tabel">
+                <table class="table table-bordered table-striped" id="tabel1">
                     <thead>
                         <tr>
                             <th>Barcode</th>
