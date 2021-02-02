@@ -65,7 +65,7 @@
                             <td style="vertical-align:top; width:20%">
                                <label for="barcode">Barcode</label> 
                             </td>
-                            <td colspan="2">
+                            <td colspan="3">
                                 <div class="form-group input-group">
                                     <input type="hidden" id="id_barang">
                                     <!-- <input type="hidden" id="stok"> -->
@@ -74,7 +74,7 @@
                                     <input type="text" id="barcode" class="form-control" autofocus>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-barang">
-                                            <i class="fa fa-search"></i>
+                                            <i class="fa fa-search"></i> Cari produk
                                         </button>
                                     </span>
                                 </div>
