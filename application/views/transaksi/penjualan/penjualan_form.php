@@ -339,7 +339,7 @@
                 </div>
                 <div class="form-group">
                     <label for="diskon_barang">Diskon per barang</label>
-                    <input type="number" id="diskon_barang" class="form-control">
+                    <input type="number" id="diskon_barang" onfocus="{this.value='';}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="total_barang">Total setelah diskon</label>

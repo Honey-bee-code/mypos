@@ -78,7 +78,7 @@
             <div class="transaction">
                 <table class="transaction-table" cellspacing="0" cellpadding="0">
                     <?php
-                    $arr_discount = array();
+                    // $arr_discount = array();
                     foreach($sale_detail as $key => $value) { ?>
                     <tr>
                         <td style="width: 165px"><?=$value->nama?></td>
@@ -90,16 +90,19 @@
                     </tr>
 
                     <?php 
-                    if($value->diskon_barang > 0){
-                        $arr_discount[] = $value->diskon_barang;
-                        }
+                    // if($value->diskon_barang > 0){
+                    //     $arr_discount[] = $value->diskon_barang;
+                    //     }
                     }
 
-                    foreach($arr_discount as $key =>$value){ ?>
+                    // foreach($arr_discount as $key =>$value){ 
+                    foreach($sale_detail as $key =>$value){ 
+                    ?>
                     <tr>
-                        <td></td>
-                        <td colspan="2" style="text-align: right">Diskon <?=($key+1)?></td>
-                        <td style="text-align: right"><?=indo_currency($value)?></td>
+                        <!-- <td></td> -->
+                        <!-- <td colspan="2" style="text-align: right">Diskon <?=($key+1)?></td> -->
+                        <td colspan="3" style="text-align: right">Diskon <?=($value->nama)?></td>
+                        <td style="text-align: right"><?=indo_currency($value->diskon_barang)?></td> <!--$value-->
                     </tr>
                     <?php } ?>
 
