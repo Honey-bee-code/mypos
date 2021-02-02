@@ -451,13 +451,18 @@ function calculate() {
 
     var cust = $('#customer').val()
     var total = $('#sub_total').val()
-    var persen = total*10/100
+    var persen = total*3/100
 
-    if(cust != ''){
-        $('#diskon').val(persen)
+    if(total >= 20000){
+        if(cust != ''){
+            $('#diskon').val(persen)
+        } else {
+            $('#diskon').val(0)
+        }
     } else {
         $('#diskon').val(0)
     }
+
     var diskon = $('#diskon').val()
     var grand_total = subtotal - diskon
     if(isNaN(grand_total)){
@@ -475,6 +480,9 @@ function calculate() {
     cash != 0 ? $('#change').val(cash - grand_total) : $('#change').val(0)
 }
 $(document).on('keyup mouseup', '#diskon, #cash, #customer', function() {
+    calculate()
+})
+$(document).on('change', '#sub_total', function() {
     calculate()
 })
 
