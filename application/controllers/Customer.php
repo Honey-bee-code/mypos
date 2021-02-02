@@ -16,6 +16,16 @@ class Customer extends CI_Controller {
 		$this->template->load('template', 'customer/customer_data', $data);
 	}
 
+	function get_json() {
+		$this->load->library('datatables');
+		$this->datatables->add_column('no', 'ID-$1', 'id_customer');
+		$this->datatables->select('id_customer, nama, gender, phone, alamat');
+		$this->datatables->add_column('opsi', anchor('customer/edit/$1','Edit', array('class' => 'btn btn-primary btn-xs'))."".
+												anchor('customer/hapus/$1','Hapus', array('class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm(\'Yakin akan menghapus data ini?\')')), 'id_customer');
+		$this->datatables->from('customer');
+		return print_r($this->datatables->generate());
+	}
+
 	public function hapus($id)
 	{
 		$this->customer_m->hapus($id);

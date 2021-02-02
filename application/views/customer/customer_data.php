@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped" id="tabel">
+            <table class="table table-bordered table-striped" id="tabel-customer">
                 <thead>
                     <tr>
                         <th class="text-center">No.</th>
@@ -30,13 +30,13 @@
                         <th>Gender</th>
                         <th>Phone</th>
                         <th>Alamat</th>
-                        <th>Created</th>
-                        <th>Updated</th>
+                        <!-- <th>Created</th> -->
+                        <!-- <th>Updated</th> -->
                         <th class="text-center">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <!-- <?php 
                     $no = 1;
                     foreach($row->result() as $key => $data) { ?>
                     <tr>
@@ -56,9 +56,33 @@
                                 </a>
                         </td>
                     </tr>
-                    <?php } ?>
+                    <?php } ?> -->
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+<script>
+$("#tabel-customer").DataTable({
+    "processing" : true,
+    "serverSide" : true,
+    "order" : [],
+    "ajax" : {
+        "url" : "<?=site_url('customer/get_json')?>",
+        "type" : "POST"
+    },
+    "columns" : [
+        { "data" : "no", width:40 },
+        { "data" : "nama", width:150 },
+        { "data" : "gender", width:70 },
+        { "data" : "phone", width:120 },
+        { "data" : "alamat", width:150 },
+        { "data" : "opsi", width:100 }
+    ],
+    "columnDefs" : [
+        { "targets" : [0, 5], "orderable" : false },
+        { "targets" : [2, -1], "className" : "text-center" }
+    ]
+})
+</script>
