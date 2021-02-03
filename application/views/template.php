@@ -29,6 +29,13 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="<?=base_url()?>assets/googlefont.css">
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="<?=base_url()?>assets/sweetalert/sweetalert2.min.css">
+    <style>
+        .swal2-popup {
+            font-size: 1.6rem !important;
+        }
+    </style>
 </head>
 <body class="hold-transition skin-purple sidebar-mini <?=$this->uri->segment(1) == 'penjualan' ? 'sidebar-collapse' : null?>">
 <!-- Site wrapper -->
@@ -200,6 +207,9 @@
 <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
+<!-- Sweetalert -->
+<script src="<?=base_url()?>assets/sweetalert/sweetalert2.min.js"></script>
+
 
 <script>
     $(document).ready(function(){

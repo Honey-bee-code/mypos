@@ -64,8 +64,27 @@ class Kategori extends CI_Controller {
 		}
 
 		if($this->db->affected_rows() > 0){
-            echo "<script>alert('Data berhasil disimpan')</script>";
+			echo "<script>alert('Data berhasil disimpan')</script>";
+			// echo "<script>Swal.fire(
+			// 	'Good job!',
+			// 	'You clicked the button!',
+			// 	'success'
+			// )</script>";
         }
-        echo "<script>window.location='" .site_url('kategori'). "'</script>";
+		// echo "<script>window.location='" .site_url('kategori'). "'</script>";
+		?>
+		<script src="<?=base_url()?>assets/sweetalert/sweetalert2.min.js"></script>
+		<link rel="stylesheet" href="<?=base_url()?>assets/sweetalert/sweetalert2.min.css">
+
+		<script>
+		Swal.fire(
+			'Good job!',
+			'You clicked the button!',
+			'success'
+			).then((result) => {
+				window.location = '<?=site_url('kategori')?>'
+			})
+		</script>
+		<?php
 	}
 }
