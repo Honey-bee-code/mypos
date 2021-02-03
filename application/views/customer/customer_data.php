@@ -36,27 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <?php 
-                    $no = 1;
-                    foreach($row->result() as $key => $data) { ?>
-                    <tr>
-                        <td class="text-center" width="5%"><?=$no++?></td>
-                        <td><?=$data->nama?></td>
-                        <td><?=$data->gender?></td>
-                        <td><?=$data->phone?></td>
-                        <td><?=$data->alamat?></td>
-                        <td><?=$data->created?></td>
-                        <td><?=$data->updated?></td>
-                        <td class="text-center" width="140px">
-                                <a href="<?=site_url('customer/edit/' .$data->id_customer)?>" class="btn btn-success btn-xs">
-                                    <i class="fa fa-pencil"></i> Update
-                                </a>
-                                <a href="<?=site_url('customer/hapus/' .$data->id_customer)?>" onclick="return confirm('Yakin akan menghapus data ini?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </a>
-                        </td>
-                    </tr>
-                    <?php } ?> -->
+                    
                 </tbody>
             </table>
         </div>

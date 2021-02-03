@@ -44,7 +44,7 @@
                             <td>
                                 <div class="form-group input-group">
                                     <input type="hidden" id="id_customer">
-                                    <input type="text" id="customer" class="form-control">
+                                    <input type="text" id="customer" placeholder="Umum" class="form-control">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-customer">
                                             <i class="fa fa-search"></i>
@@ -413,6 +413,7 @@ $(document).on('click', '#pilih-cust', function(){
     $('#id_customer').val($(this).data('id'))
     $('#customer').val($(this).data('nama'))
     $('#modal-customer').modal('hide')
+    calculate()
 
 })
 
@@ -503,7 +504,7 @@ function calculate() {
     })
     isNaN(subtotal) ? $('#sub_total').val(0) : $('#sub_total').val(subtotal)
 
-    var cust = $('#customer').val()
+    var cust = $('#id_customer').val()
     var total = $('#sub_total').val()
     var persen = total*3/100
 
@@ -533,7 +534,7 @@ function calculate() {
     var cash = $('#cash').val();
     cash != 0 ? $('#change').val(cash - grand_total) : $('#change').val(0)
 }
-$(document).on('keyup mouseup', '#diskon, #cash, #customer', function() {
+$(document).on('keyup mouseup', '#diskon, #cash', function() {
     calculate()
 })
 $(document).on('change', '#sub_total', function() {
