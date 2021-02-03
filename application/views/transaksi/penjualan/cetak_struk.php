@@ -81,36 +81,39 @@
                     // $arr_discount = array();
                     foreach($sale_detail as $key => $value) { ?>
                     <tr>
-                        <td style="width: 165px"><?=$value->nama?></td>
-                        <td><?=$value->qty?></td>
-                        <td style="text-align: right; width: 60px"><?=indo_currency($value->harga)?></td>
-                        <td style="text-align: right; width: 60px">
+                        <td></td>
+                        <td style="width: 135px"><?=$value->nama?></td>
+                        <td style="text-align: left;"><?=$value->qty?></td>
+                        <td style="text-align: right; width: 70px"><?=indo_currency($value->harga)?></td>
+                        <td style="text-align: right; width: 70px">
                             <?=indo_currency(($value->harga - $value->diskon_barang) * $value->qty)?>
                         </td>
                     </tr>
 
                     <?php 
-                    // if($value->diskon_barang > 0){
-                    //     $arr_discount[] = $value->diskon_barang;
-                    //     }
+                    if($value->diskon_barang > 0){
+                        $arr_discount[] = $value->diskon_barang;
+                        }
                     }
 
-                    // foreach($arr_discount as $key =>$value){ 
-                    foreach($sale_detail as $key =>$value){ 
+                        foreach($arr_discount as $key =>$value){ 
+                    
+                    // foreach($sale_detail as $key =>$value){ 
                     ?>
                     <tr>
-                        <!-- <td></td> -->
-                        <!-- <td colspan="2" style="text-align: right">Diskon <?=($key+1)?></td> -->
-                        <td colspan="3" style="text-align: right">Diskon <?=($value->nama)?></td>
-                        <td style="text-align: right"><?=indo_currency($value->diskon_barang)?></td> <!--$value-->
+                        <td></td>
+                        <td></td>
+                        <td colspan="2" style="text-align: right">Diskon <?=($key+1)?></td>
+                        <!-- <td colspan="3" style="text-align: right">Diskon <?=($value->nama)?></td> -->
+                        <td style="text-align: right"><?=indo_currency($value)?></td> <!--$value-->
                     </tr>
-                    <?php } ?>
+                    <?php }?>
 
                     <tr>
-                        <td colspan="4" style="border-bottom: 1px dashed; padding-top: 5px"></td>
+                        <td colspan="5" style="border-bottom: 1px dashed; padding-top: 5px"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
+                        <td colspan="3"></td>
                         <td style="text-align: right; padding-top: 5px">Total Harga</td>
                         <td style="text-align: right; padding-top: 5px">
                             <?=indo_currency($sale->total_harga)?>
@@ -118,25 +121,21 @@
                     </tr>
                     <?php if($sale->diskon > 0) { ?>
                     <tr>
-                        <td colspan="2"></td>
-                        <td style="text-align: right; padding-bottom: 5px">Total Diskon</td>
+                        <td style="text-align: right; padding-bottom: 5px" colspan="4">Total Diskon</td>
                         <td style="text-align: right; padding-bottom: 5px"><?=indo_currency($sale->diskon)?></td>
                     </tr>
                     <?php } ?>
                     
                     <tr>
-                        <td colspan="2"></td>
-                        <td style="text-align: right; padding-bottom: 5px 0">Total Akhir</td>
+                        <td style="text-align: right; padding-bottom: 5px 0" colspan="4">Total Akhir</td>
                         <td style="text-align: right; padding-bottom: 5px 0"><?=indo_currency($sale->harga_semua)?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
-                        <td style="text-align: right; padding-bottom: 5px">Bayar</td>
+                        <td style="text-align: right; padding-bottom: 5px" colspan="4">Bayar</td>
                         <td style="text-align: right; padding-bottom: 5px"><?=indo_currency($sale->bayar)?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
-                        <td style="text-align: right">Uang Kembali</td>
+                        <td style="text-align: right" colspan="4">Uang Kembali</td>
                         <td style="text-align: right"><?=indo_currency($sale->kembalian)?></td>
                     </tr>
                 </table>
