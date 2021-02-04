@@ -46,6 +46,7 @@ class Barang extends CI_Controller {
         $barang->barcode = null;
 		$barang->nama = null;
 		$barang->harga = null;
+		$barang->diskon_barang = null;
 		$barang->id_kategori = null;
 		$barang->created = null;
         $barang->updated = null;

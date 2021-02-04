@@ -31,6 +31,7 @@ class Barang_m extends CI_Model {
             'id_kategori' => $post['kategori'],
             'id_unit' => $post['unit'],
             'harga' => $post['harga'],
+            'diskon_barang' => $post['diskon'],
             'gambar' => $post['gambar'],
 
         ];
@@ -45,6 +46,7 @@ class Barang_m extends CI_Model {
             'id_kategori' => $post['kategori'],
             'id_unit' => $post['unit'],
             'harga' => $post['harga'],
+            'diskon_barang' => $post['diskon'],
             'updated' => date('Y-m-d H:i:s')
         ];
 

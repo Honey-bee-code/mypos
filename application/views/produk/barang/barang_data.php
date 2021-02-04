@@ -30,6 +30,7 @@
                         <th>Kategori</th>
                         <th>Satuan Unit</th>
                         <th>Harga</th>
+                        <th>Diskon</th>
                         <th>Stok</th>
                         <th>Gambar</th>
 
@@ -52,6 +53,7 @@
                         <td><?=$data->nama_kategori?></td>
                         <td><?=$data->nama_unit?></td>
                         <td style="text-align: right"><?=indo_currency($data->harga)?></td>
+                        <td style="text-align: right"><?=indo_currency($data->diskon_barang)?></td>
                         <td style="text-align: right"><?=$data->stok?></td>
                         <td class="text-center">
                             <?php if($data->gambar != null){ ?>

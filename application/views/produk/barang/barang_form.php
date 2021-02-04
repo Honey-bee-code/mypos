@@ -53,6 +53,10 @@
                             <input type="number" name="harga" value="<?=$row->harga?>" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label>Diskon</label>
+                            <input type="number" name="diskon" value="<?=$row->diskon_barang?>" class="form-control" >
+                        </div>
+                        <div class="form-group">
                             <label>Gambar</label>
                             <?php if($page == 'edit'){
                                     if($row->gambar != null){ ?>
