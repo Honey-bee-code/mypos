@@ -78,7 +78,7 @@
             <div class="transaction">
                 <table class="transaction-table" cellspacing="0" cellpadding="0">
                     <?php
-                    // $arr_discount = array();
+                    $arr_discount = array();
                     foreach($sale_detail as $key => $value) { ?>
                     <tr>
                         <td></td>
@@ -91,8 +91,8 @@
                     </tr>
 
                     <?php 
-                    $arr_discount[] = $value->diskon_barang;
                     if($value->diskon_barang > 0){
+                            $arr_discount[] = $value->diskon_barang;
                         }
                     }
 
