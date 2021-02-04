@@ -72,6 +72,7 @@
                                     <!-- <input type="hidden" id="stok"> -->
                                     <input type="hidden" id="qty_keranjang">
                                     <input type="hidden" id="harga">
+                                    <input type="hidden" id="diskonBarang">
                                     <input type="text" id="barcode" class="form-control" autofocus>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-barang">
@@ -317,6 +318,7 @@
                             <th>Nama</th>
                             <th>Unit</th>
                             <th>Harga</th>
+                            <th>Diskon</th>
                             <th>Stok</th>
                             <th>Action</th>
                         </tr>
@@ -328,12 +330,14 @@
                             <td><?=$data->nama?></td>
                             <td><?=$data->nama_unit?></td>
                             <td class="text-right"><?=indo_currency($data->harga)?></td>
+                            <td class="text-right"><?=indo_currency($data->diskon_barang)?></td>
                             <td class="text-right"><?=$data->stok?></td>
                             <td class="text-center">
                                 <button class="btn btn-xs btn-info" id="pilih" 
                                 data-id="<?=$data->id_barang?>"
                                 data-barcode="<?=$data->barcode?>"
                                 data-harga="<?=$data->harga?>"
+                                data-diskon="<?=$data->diskon_barang < 1 ? 0 : $data->diskon_barang?>"
                                 data-stok="<?=$data->stok?>">
                                     <i class="fa fa-check"></i> Pilih
                                 </button>
@@ -423,6 +427,7 @@ $(document).on('click', '#pilih', function(){
     $('#id_barang').val($(this).data('id'))
     $('#barcode').val(barcode)
     $('#harga').val($(this).data('harga'))
+    $('#diskonBarang').val($(this).data('diskon'))
     $('#stok').val($(this).data('stok'))
     $('#modal-barang').modal('hide')
 
@@ -443,6 +448,7 @@ function get_cart_qty(barcode){
 $(document).on('click', '#tambah_keranjang', function(){
     var idBarang = $('#id_barang').val()
     var harga = $('#harga').val()
+    var diskon = $('#diskonBarang').val()
     var stok = $('#stok').val()
     var qty = $('#qty').val()
     var qty_cart = $('#qty_keranjang').val()
@@ -452,14 +458,14 @@ $(document).on('click', '#tambah_keranjang', function(){
         $('#barcode').focus()
     } else if(stok < 1 || parseInt(stok) < (parseInt(qty) + parseInt(qty_cart))) {
         alert('Stok tidak mencukupi')
-        // $('#id_barang').val('')
-        // $('#barcode').val('')
+        $('#id_barang').val('')
+        $('#barcode').val('')
         $('#qty').focus()
     } else {
         $.ajax({
             type: 'POST',
             url: '<?=site_url('penjualan/proses')?>',
-            data: {'tambah_keranjang' : true, 'id_barang' : idBarang, 'harga' : harga, 'qty' : qty},
+            data: {'tambah_keranjang' : true, 'id_barang' : idBarang, 'harga' : harga, 'diskon' : diskon, 'qty' : qty},
             dataType: 'json',
             success: function(result){
                         if(result.success == true) {

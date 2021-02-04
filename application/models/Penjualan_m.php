@@ -22,7 +22,8 @@ class Penjualan_m extends CI_Model {
 
     public function get_cart($param = null)
     {
-        $this->db->select('*, p_barang.nama as nama_barang, t_keranjang.harga as harga_keranjang'); //tanda (*) artinya semua field
+        $this->db->select('*, p_barang.nama as nama_barang, t_keranjang.harga as harga_keranjang,
+                        t_keranjang.diskon_barang as diskon_per_barang'); //tanda (*) artinya semua field
         $this->db->from('t_keranjang');
         $this->db->join('p_barang', 't_keranjang.id_barang = p_barang.id_barang');
         if($param != null){
@@ -47,8 +48,9 @@ class Penjualan_m extends CI_Model {
             'id_keranjang' => $nomor,
             'id_barang' => $data['id_barang'],
             'harga' => $data['harga'],
+            'diskon_barang' => $data['diskon'],
             'qty' => $data['qty'],
-            'total' => ($data['harga'] * $data['qty']), // bisa dikasi kurung, bisa juga tidak
+            'total' => ($data['harga'] - $data['diskon']) * $data['qty'], // bisa dikasi kurung, bisa juga tidak
             'id_user' => $this->session->userdata('userid')
         );
         $this->db->insert('t_keranjang', $param);

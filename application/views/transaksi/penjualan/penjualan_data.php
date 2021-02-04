@@ -7,7 +7,7 @@ if($keranjang->num_rows() > 0) {
     <td><?=$data->nama_barang?></td>
     <td class="text-right"><?=($data->harga_keranjang)?></td>
     <td class="text-right"><?=$data->qty?></td>
-    <td class="text-right"><?=$data->diskon_barang?></td>
+    <td class="text-right"><?=$data->diskon_per_barang?></td>
     <td class="text-right" id="total"><?=$data->total?></td>
     <td class="text-center" width="140px">
         <button id="edit_keranjang" data-toggle="modal" data-target="#modal-barang-edit"
@@ -17,7 +17,7 @@ if($keranjang->num_rows() > 0) {
             data-stok="<?=$data->stok?>"
             data-harga="<?=$data->harga_keranjang?>"
             data-qty="<?=$data->qty?>"
-            data-diskon="<?=$data->diskon_barang?>"
+            data-diskon="<?=$data->diskon_per_barang?>"
             data-total="<?=$data->total?>"
             class="btn btn-xs btn-primary">
             <i class="fa fa-pencil"></i> Edit

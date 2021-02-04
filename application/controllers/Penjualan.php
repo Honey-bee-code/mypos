@@ -27,7 +27,7 @@ class Penjualan extends CI_Controller {
 	{
 		$data = $this->input->post(null, TRUE);
 
-		if(isset($_POST['tambah_keranjang'])) {
+		if(isset($_POST['tambah_keranjang'])) { 
 			$id_barang = $this->input->post('id_barang');
 			$cek_keranjang = $this->penjualan_m->get_cart(['t_keranjang.id_barang' => $id_barang])->num_rows();
 			if($cek_keranjang > 0){
