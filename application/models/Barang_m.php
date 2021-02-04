@@ -17,6 +17,20 @@ class Barang_m extends CI_Model {
         return $query;
     }
 
+    function get_barcode($barcode = null)
+    {
+        $this->db->select('p_barang.*, p_kategori.nama as nama_kategori, p_unit.nama as nama_unit');
+        $this->db->from('p_barang');
+        $this->db->join('p_kategori', 'p_kategori.id_kategori = p_barang.id_kategori');
+        $this->db->join('p_unit', 'p_unit.id_unit = p_barang.id_unit');
+
+        if($barcode != null) {
+            $this->db->where('barcode', $barcode);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function hapus($id)
 	{
         $this->db->where('id_barang', $id);

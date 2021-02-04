@@ -109,7 +109,7 @@
                                     </button>
                                 </div>
                             </td>
-                            <td colspan="2" style="text-align: center">
+                            <td colspan="2" style="text-align: right">
                                <small>Input time : </small><b><span id="jamServer"><?=date("H:i:s");?></span></b>
                             </td>
                         </tr>
@@ -685,6 +685,38 @@ $(document).on('click', '#cancel_payment', function() {
         $('#customer').val('').change()
         $('#barcode').val('')
         $('#barcode').focus()
+    }
+})
+
+$('#barcode').keypress(function (e) {
+    var key = e.which
+    var barcode = $(this).val()
+    if(key == 13) {
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url('penjualan/get_barang')?>',
+            data: {'barcode' : barcode},
+            dataType: 'json',
+            success: function(result){
+                        if(result.success == true) {
+                            $('#id_barang').val(result.barang.id_barang)
+                            $('#barcode').val(barcode)
+                            $('#harga').val(result.barang.harga)
+                            if(result.barang.diskon_barang == null){
+                                $('#diskonBarang').val(0)
+                            } else {
+                                $('#diskonBarang').val(result.barang.diskon_barang)
+                            }
+                            $('#stok').val(result.barang.stok)
+
+                            $('#tambah_keranjang').click()
+                        } else {
+                            alert('Barang tidak ditemukan')
+                            $('#barcode').val('')
+                        }
+                    }
+
+            })
     }
 })
 

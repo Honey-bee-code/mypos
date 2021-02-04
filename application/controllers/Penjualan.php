@@ -6,12 +6,11 @@ class Penjualan extends CI_Controller {
     {
         parent::__construct();
         tidak_login();
-        $this->load->model(['penjualan_m', 'barang_m']);
+        $this->load->model(['penjualan_m', 'customer_m', 'barang_m']);
     }
 
 	public function index() 
 	{
-		$this->load->model('customer_m');
 		$pelanggan = $this->customer_m->get()->result();
 		$keranjang = $this->penjualan_m->get_cart();
 		$data = array(
@@ -21,6 +20,17 @@ class Penjualan extends CI_Controller {
 			'keranjang' => $keranjang,
 		);
         $this->template->load('template', 'transaksi/penjualan/penjualan_form', $data);
+	}
+
+	function get_barang(){
+		$barcode = $this->input->post('barcode');
+		$barang = $this->barang_m->get_barcode($barcode)->row();
+		if($this->db->affected_rows() > 0){
+			$param  = array("success" => true, "barang" => $barang);
+		} else {
+			$param  = array("success" => false);
+		}
+		echo json_encode($param);
 	}
 
 	public function proses() 
