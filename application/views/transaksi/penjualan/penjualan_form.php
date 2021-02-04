@@ -149,7 +149,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabel_keranjang">
-                            <?php $this->view('transaksi/penjualan/penjualan_data') ?>
+                            <?php $this->view('transaksi/penjualan/keranjang') ?>
                         </tbody>
                     </table>
                 </div>

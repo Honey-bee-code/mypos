@@ -85,7 +85,7 @@ class Penjualan extends CI_Controller {
 	function cart_data(){
 		$keranjang = $this->penjualan_m->get_cart();
 		$data['keranjang'] = $keranjang;
-		$this->load->view('transaksi/penjualan/penjualan_data', $data);
+		$this->load->view('transaksi/penjualan/keranjang', $data);
 	}
 
 	public function cart_del()
