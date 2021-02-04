@@ -91,21 +91,19 @@
                     </tr>
 
                     <?php 
+                    $arr_discount[] = $value->diskon_barang;
                     if($value->diskon_barang > 0){
-                        $arr_discount[] = $value->diskon_barang;
                         }
                     }
 
-                        foreach($arr_discount as $key =>$value){ 
+                        foreach($arr_discount as $key =>$value){
                     
-                    // foreach($sale_detail as $key =>$value){ 
                     ?>
                     <tr>
                         <td></td>
                         <td></td>
                         <td colspan="2" style="text-align: right">Diskon <?=($key+1)?></td>
-                        <!-- <td colspan="3" style="text-align: right">Diskon <?=($value->nama)?></td> -->
-                        <td style="text-align: right"><?=indo_currency($value)?></td> <!--$value-->
+                        <td style="text-align: right"><?=indo_currency($value)?></td>
                     </tr>
                     <?php }?>
 

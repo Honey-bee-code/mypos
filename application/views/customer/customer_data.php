@@ -30,6 +30,7 @@
                         <th>Gender</th>
                         <th>Phone</th>
                         <th>Alamat</th>
+                        <th>Total Belanja</th>
                         <!-- <th>Created</th> -->
                         <!-- <th>Updated</th> -->
                         <th class="text-center">Opsi</th>
@@ -58,10 +59,11 @@ $("#tabel-customer").DataTable({
         { "data" : "gender", width:70 },
         { "data" : "phone", width:120 },
         { "data" : "alamat", width:150 },
+        { "data" : "total_belanja", width:80 },
         { "data" : "opsi", width:100 }
     ],
     "columnDefs" : [
-        { "targets" : [0, 5], "orderable" : false },
+        { "targets" : [0, 6], "orderable" : false },
         { "targets" : [2, -1], "className" : "text-center" }
     ]
 })
