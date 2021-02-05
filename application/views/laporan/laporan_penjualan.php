@@ -34,9 +34,14 @@
                 <div class="col-md-3">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">s/d</label>
+                            <label class="col-sm-3 control-label" style="text-align: left">Kasir</label>
                             <div class="col-sm-9">
-                                <input type="date" name="tanggal2" value="<?=@$post['tanggal2']?>" class="form-control">
+                                <select name="kasir" class="form-control">
+                                    <option value="">- Semua -</option>
+                                    <?php foreach($kasir as $k => $data) { ?>
+                                    <option value="<?=$data->id_user?>" <?=@$post['kasir'] == $data->id_user ? 'selected' : ''?>><?=ucfirst($data->username)?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -44,7 +49,7 @@
                 <div class="col-md-3">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Pelanggan</label>
+                            <label class="col-sm-3 control-label" style="text-align: left">Pelanggan</label>
                             <div class="col-sm-9">
                                 <select name="customer" class="form-control">
                                     <option value="">- Semua -</option>
@@ -60,7 +65,7 @@
                 <div class="col-md-3">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Invoice</label>
+                            <label class="col-sm-3 control-label" style="text-align: left">Invoice</label>
                             <div class="col-sm-9">
                                 <input type="text" name="invoice" value="<?=@$post['invoice']?>" class="form-control">
                             </div>
@@ -72,14 +77,9 @@
                 <div class="col-md-3">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left">Kasir</label>
+                            <label class="col-sm-3 control-label">s/d</label>
                             <div class="col-sm-9">
-                                <select name="kasir" class="form-control">
-                                    <option value="">- Semua -</option>
-                                    <?php foreach($kasir as $k => $data) { ?>
-                                    <option value="<?=$data->id_user?>" <?=@$post['kasir'] == $data->id_user ? 'selected' : ''?>><?=ucfirst($data->username)?></option>
-                                    <?php } ?>
-                                </select>
+                                <input type="date" name="tanggal2" value="<?=@$post['tanggal2']?>" class="form-control">
                             </div>
                         </div>
                     </div>
