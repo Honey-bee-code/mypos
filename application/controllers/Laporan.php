@@ -7,7 +7,7 @@ class Laporan extends CI_Controller {
         parent::__construct();
         tidak_login();
         cek_admin();
-        $this->load->model(['penjualan_m', 'stok_m', 'customer_m']);
+        $this->load->model(['penjualan_m', 'stok_m', 'customer_m', 'user_m']);
     }
 
 	public function penjualan()
@@ -51,6 +51,7 @@ class Laporan extends CI_Controller {
 
         $data['pagination'] = $this->pagination->create_links();
         $data['customer'] = $this->customer_m->get()->result();
+        $data['kasir'] = $this->user_m->get()->result();
         $data['row'] = $this->penjualan_m->get_sale_pagination($config['per_page'], $this->uri->segment(3));
         $data['post'] = $post;
 

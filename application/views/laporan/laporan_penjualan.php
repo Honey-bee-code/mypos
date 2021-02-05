@@ -24,7 +24,7 @@
                 <div class="col-md-3">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Tanggal</label>
+                            <label class="col-sm-3 control-label" style="text-align: left">Tanggal</label>
                             <div class="col-sm-9">
                                 <input type="date" name="tanggal1" value="<?=@$post['tanggal1']?>" class="form-control">
                             </div>
@@ -69,7 +69,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-3">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left">Kasir</label>
+                            <div class="col-sm-9">
+                                <select name="kasir" class="form-control">
+                                    <option value="">- Semua -</option>
+                                    <?php foreach($kasir as $k => $data) { ?>
+                                    <option value="<?=$data->id_user?>" <?=@$post['kasir'] == $data->id_user ? 'selected' : ''?>><?=ucfirst($data->username)?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
                     <div class="pull-right">
                         <button type="submit" name="reset" class="btn btn-flat">Reset</button>
                         <button type="submit" name="filter" class="btn btn-info btn-flat">

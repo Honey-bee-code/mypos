@@ -143,6 +143,9 @@ class Penjualan_m extends CI_Model {
         if(!empty($post['invoice'])) {
             $this->db->like("invoice", $post['invoice']);
         }
+        if(!empty($post['kasir'])) {
+            $this->db->where("t_penjualan.id_user", $post['kasir']);
+        }
 
         $this->db->limit($limit, $start);
         $this->db->order_by('tanggal_input', 'desc');
