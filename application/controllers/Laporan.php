@@ -7,12 +7,25 @@ class Laporan extends CI_Controller {
         parent::__construct();
         tidak_login();
         cek_admin();
-        $this->load->model(['penjualan_m', 'stok_m']);
+        $this->load->model(['penjualan_m', 'stok_m', 'customer_m']);
     }
 
 	public function penjualan()
 	{
         $this->load->library('pagination');
+        
+        //reset taruh paling atas
+        if(isset($_POST['reset'])) {
+            $this->session->unset_userdata('search');
+        }
+        if(isset($_POST['filter'])) {
+            $post = $this->input->post(null, TRUE);
+            $this->session->set_userdata('search', $post);
+        } else {
+            $post = $this->session->userdata('search');
+        }
+
+
         $config['base_url'] = site_url('laporan/penjualan');
         $config['total_rows'] = $this->penjualan_m->get_sale_pagination()->num_rows();
         $config['per_page'] = 5;
@@ -37,8 +50,9 @@ class Laporan extends CI_Controller {
         $this->pagination->initialize($config);
 
         $data['pagination'] = $this->pagination->create_links();
-
+        $data['customer'] = $this->customer_m->get()->result();
         $data['row'] = $this->penjualan_m->get_sale_pagination($config['per_page'], $this->uri->segment(3));
+        $data['post'] = $post;
 
 		$this->template->load('template', 'laporan/laporan_penjualan', $data);
     }

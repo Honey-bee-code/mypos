@@ -123,14 +123,29 @@ class Penjualan_m extends CI_Model {
 
     public function get_sale_pagination($limit = null, $start = null)
     {
+        $post = $this->session->userdata('search');
         $this->db->select('*, customer.nama as nama_customer, user.username as kasir,
                             t_penjualan.created as tanggal_input');
         $this->db->from('t_penjualan');
         $this->db->join('customer', 't_penjualan.id_customer = customer.id_customer', 'left');
         $this->db->join('user', 't_penjualan.id_user = user.id_user');
-        
-        $this->db->order_by('tanggal_input', 'desc');
+
+        if(!empty($post['tanggal1']) && !empty($post['tanggal2'])) {
+            $this->db->where("t_penjualan.tanggal BETWEEN '$post[tanggal1]' AND '$post[tanggal2]'" );
+        }
+        if(!empty($post['customer'])) {
+            if($post['customer'] == 'null') {
+                $this->db->where("t_penjualan.id_customer IS NULL");
+            } else {
+                $this->db->where("t_penjualan.id_customer", $post['customer']);
+            }
+        }
+        if(!empty($post['invoice'])) {
+            $this->db->like("invoice", $post['invoice']);
+        }
+
         $this->db->limit($limit, $start);
+        $this->db->order_by('tanggal_input', 'desc');
         $query = $this->db->get();
         return $query;
     }

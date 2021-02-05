@@ -460,7 +460,7 @@ $(document).on('click', '#tambah_keranjang', function(){
         alert('Stok tidak mencukupi')
         $('#id_barang').val('')
         $('#barcode').val('')
-        $('#qty').focus()
+        $('#barcode').focus()
     } else {
         $.ajax({
             type: 'POST',
