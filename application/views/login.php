@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="<?=base_url()?>/assets/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>/assets/dist/css/AdminLTE.min.css">
+  <link rel="icon" href="<?=base_url('assets/images/bee.png')?>">
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
