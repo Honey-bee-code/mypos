@@ -100,7 +100,7 @@ class Penjualan_m extends CI_Model {
             'id_user' => $this->session->userdata('userid'),
         );
         $this->db->insert('t_penjualan', $param);
-        return $this->db->insert_id(); //insert_id bawaan CI untuk
+        return $this->db->insert_id();
     }
     function add_sale_detail($param) {
         $this->db->insert_batch('t_penjualan_detail', $param);

@@ -73,9 +73,9 @@ class Penjualan extends CI_Controller {
 				array_push($row, array(
 						'id_penjualan' => $sale_id,
 						'id_barang' => $value->id_barang,
-						'harga' => $value->harga,
+						'harga' => $value->harga_keranjang,
 						'qty' => $value->qty,
-						'diskon_barang' => $value->diskon_barang,
+						'diskon_barang' => $value->diskon_per_barang,
 						'total' => $value->total,
 					)
 				);
