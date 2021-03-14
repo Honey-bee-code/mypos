@@ -196,7 +196,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy <?=date('Y');?><a href="https://api.whatsapp.com/send? phone=6285237585803"> Kaligrafi Lombok</a></strong>
+        <strong>Copyright &copy <?=date('Y');?><a href="https://api.whatsapp.com/send?phone=6285237585803&text=Assalamualaikum,%20Haloo%20honeybeecode.com,%20Saya%20butuh%20bantuan,.." style="color: white; text-decoration: none"> Kaligrafi Lombok</a></strong>
     </footer>
 </div>
 
