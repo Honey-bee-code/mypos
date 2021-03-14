@@ -22,13 +22,13 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
+<body class="hold-transition login-page" style="background-image: url(<?=site_url('assets/images/begrond2.png')?>)">
+    <div class="login-box" >
         <div class="login-logo">
             <a href="">Aplikasi<b>Ku</b></a>
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body">
+        <div class="login-box-body" style="background-image: url(<?=site_url('assets/images/begrond.png')?>)">
             <p class="login-box-msg">Silahkan masuk untuk memulai aplikasi</p>
 
             <form action="<?=site_url('auth/proses')?>" method="post">
