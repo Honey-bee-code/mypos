@@ -68,13 +68,13 @@
                                 $dp = base_url('assets/images/picture.jpg');
                                 $null = base_url('uploads/photos/');
                             ?>
-                            <img src="<?=$pp == $null ? $dp : $pp?>" class="user-image" alt="User Image">
+                            <img src="<?=$pp == $null ? $dp : $pp?>" class="user-image" alt="User Image" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover; ">
                             <span class="hidden-xs"><?=$this->session->userdata('username')?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?=$pp == $null ? $dp : $pp?>" class="img-circle" alt="User Image">
+                                <img src="<?=$pp == $null ? $dp : $pp?>" class="img-circle" alt="User Image" style="height: 110px; width: 110px; border-radius: 50%; object-fit: cover; ">
                                 <p><?=$this->fungsi->user_login()->nama?>
                                     <small><?=$this->fungsi->user_login()->alamat?></small>
                                 </p>
@@ -104,7 +104,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<?=$pp == $null ? $dp : $pp?>" class="img-circle" alt="User Image">
+                    <img src="<?=$pp == $null ? $dp : $pp?>" class="img-circle" alt="User Image" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover; ">
                 </div>
                 <div class="pull-left info">
                     <p><?=ucfirst($this->fungsi->user_login()->username)?></p>
